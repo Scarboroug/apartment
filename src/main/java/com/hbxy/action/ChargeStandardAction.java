@@ -47,8 +47,7 @@ public class ChargeStandardAction extends BaseAction
 		{
 			e.printStackTrace();
 		}
-		
-		
+
 		mv.addObject("pd", pd);
 		mv.addObject("msg", "list");
 		mv.addObject("varList", list);
