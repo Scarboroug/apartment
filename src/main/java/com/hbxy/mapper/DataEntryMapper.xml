@@ -1,0 +1,59 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="DataEntryMapper">
+
+	<sql id="saveParams">
+		room_id, water, electric, time, days
+	</sql>
+	
+	<insert id="save" parameterType="pd" keyProperty="weId" useGeneratedKeys="true">
+		insert into we(<include refid="saveParams"></include>)
+		values(#{roomId}, #{water}, #{electric}, #{time}, #{days})		
+	</insert>
+	
+	<select id="listPage" parameterType="page" resultType="pd">
+		SELECT we_id weId, water, electric, time, room_number roomNumber, gender, total, room_type roomType
+		FROM
+			room r,
+			room_type t,
+			we
+		WHERE
+			r.roomType_id = t.roomType_id
+			and r.room_id = we.room_id
+			<if test="pd.time != null and pd.time != ''">
+				and time = #{pd.time}
+			</if>
+			<if test="pd.roomNumber != null and pd.roomNumber != ''">
+				and roomNumber = #{pd.roomNumber}
+			</if>
+	</select>
+	
+	<select id="findById" parameterType="pd" resultType="pd">
+		select we_id weId, water, electric from we where we_id = #{weId}
+	</select>
+	
+	<update id="updateDaysById" parameterType="pd">
+		update we 
+		set days = #{days}
+		where we_id = #{weId}
+	</update>
+	
+	<update id="updateById" parameterType="pd">
+		update we 
+		<set>
+			<if test="water != null and water != ''">
+				water = #{water},
+			</if>
+			<if test="electric != null and electric != ''">
+				electric = #{electric}
+			</if>
+		</set>
+		where we_id = #{weId}
+	</update>
+	
+	<select id="findAllLogin" parameterType="pd" resultType="pd">
+		select login_id loginId, login_name loginName, password, role
+		from login
+	</select>
+</mapper>
+	

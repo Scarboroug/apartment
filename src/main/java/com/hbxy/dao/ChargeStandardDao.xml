@@ -1,0 +1,35 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hbxy.dao.ChargeStandardDao">
+
+	<resultMap type="com.hbxy.bean.ChargeStandardBean" id="mapId">
+		<id property="cs_id" column="csId"/>
+		<result property="cs_name" column="csName"/>
+		<result property="cs_price" column="csPrice"/>
+		<result property="cs_unit" column="csUnit"/>
+	</resultMap>
+
+	<select id="findById" parameterType="int" resultMap="mapId">
+  		select cs_id, cs_name, cs_price, cs_unit
+  			from charge_standard
+  			where cs_id = #{csId}
+  	</select>
+  	
+  	<select id="findAll" resultMap="mapId">
+  		select cs_id, cs_name, cs_price, cs_unit
+  			from charge_standard
+  	</select>
+  	
+  	<update id="updateById" parameterType="com.hbxy.bean.ChargeStandardBean">
+  		update charge_standard 
+  			<set>
+  				<if test="csName != null and csName != ''">
+  					cs_name = #{csName},
+  				</if>
+  				<if test="csPrice != null and csPrice != ''">
+  					cs_price = #{csPrice},
+  				</if>
+  			</set>
+  			where cs_id = #{csId}
+  	</update>
+</mapper>

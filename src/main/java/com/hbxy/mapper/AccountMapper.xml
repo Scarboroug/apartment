@@ -1,0 +1,36 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AccountMapper">
+	<select id="findlistPage" parameterType="page" resultType="pd">
+		select login_id loginId, login_name loginName, password, role
+		from login
+		order by role
+	</select>
+	
+	<select id="findById" parameterType="pd" resultType="pd">
+		select login_id loginId, login_name loginName, password, role
+		from login
+		where login_id = #{loginId}
+	</select>
+	
+	<insert id="save" parameterType="pd">
+		insert into login(login_name, password, role)
+		values(#{loginName}, #{password}, #{role})
+	</insert>
+	
+	<delete id="removeAll" parameterType="int">
+		delete from login
+		where 
+			login_id in
+			<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+	</delete>
+	
+	<update id="updateById" parameterType="pd">
+		update login
+		set login_name = #{loginName},
+			password = #{password}
+		where login_id = #{loginId}
+	</update>
+</mapper>

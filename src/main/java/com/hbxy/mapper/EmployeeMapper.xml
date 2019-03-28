@@ -1,0 +1,138 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EmployeeMapper">
+	<resultMap type="com.hbxy.bean.EmployeeBean" id="mapBean">
+		<id property="empId" column="emp_id"/>
+		<result property="name" column="name"/>
+		<result property="idNumber" column="idNumber"/>
+		<result property="gender" column="gender"/>
+		<result property="phone" column="phone"/>
+		<result property="roomId" column="room_id"/>
+		<result property="detailed" column="detailed"/>
+		<result property="enterTime" column="enter_time"/>
+		<result property="payTime" column="payTime"/>
+		<result property="next_payTime" column="nextPayTime"/>
+		<association property="room" column="room_id" 
+			javaType="com.hbxy.bean.RoomBean" select="com.hbxy.dao.RoomDao.findById">
+		</association>
+	</resultMap>
+	<sql id="selectParams">
+		e.emp_id empId, e.name, e.idNumber, e.gender, e.phone, e.room_id roomId, 
+		(select r.room_number from room r where r.room_id = e.room_id) roomNumber, 
+		e.detailed, e.enter_time enterTime, e.payTime, next_payTime nextPayTime, 
+		delete_flag deleteFlag, we_payTime wePayTime, leave_time leaveTime
+	</sql>
+	<sql id="insertParams">
+		name, idNumber, gender, phone, room_id, detailed, enter_time, payTime, next_payTime, we_payTime, delete_flag
+	</sql>
+
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select <include refid="selectParams"></include>
+			from employee e
+			where delete_flag = 0
+			<if test="pd.name != null and pd.name != ''">
+				and (
+						name like concat('%', #{pd.name}, '%')
+					or idNumber like concat('%', #{pd.name}, '%')
+					) 
+			</if>	
+			<if test="pd.startTime != null and pd.startTime != ''">
+				and STR_TO_DATE(enter_time, "%Y-%m-%d") &gt;= #{pd.startTime}
+			</if>	
+			<if test="pd.endTime != null and pd.endTime != ''">
+				and STR_TO_DATE(enter_time, "%Y-%m-%d") &lt;= #{pd.endTime}
+			</if>	
+	</select>
+	
+	
+	<insert id="insertEmployee" parameterType="pd">
+		insert into employee(<include refid="insertParams"></include>)
+		values(#{name, jdbcType = VARCHAR}, #{idNumber, jdbcType = VARCHAR}, 
+			#{gender, jdbcType = NUMERIC}, #{phone, jdbcType = VARCHAR}, 
+			#{roomId, jdbcType = NUMERIC}, #{detailed},
+			#{enterTime}, #{payTime}, #{nextPayTime}, #{wePayTime}, #{deleteFlag})
+	</insert>
+	
+	<update id="updateEmpById" parameterType="pd">
+		update employee
+		<set>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="idNumber != null and idNumber != ''">
+				idNumber = #{idNumber},
+			</if>
+			<if test="gender != null and gender != ''">
+				gender = #{gender},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone = #{phone},
+			</if>
+			<if test="roomId != null and roomId != ''">
+				room_id = #{roomId},
+			</if>
+			<if test="detailed != null and detailed != ''">
+				detailed = #{detailed},
+			</if>
+			<if test="enterTime != null and enterTime != ''">
+				enter_time = #{enterTime},
+			</if>
+			<if test="payTime != null and payTime != ''">
+				payTime = #{payTime},
+			</if>
+			<if test="nextPayTime != null and nextPayTime != ''">
+				next_payTime = #{nextPayTime},
+			</if>
+			<if test="wePayTime != null and wePayTime != ''">
+				we_payTime = #{wePayTime},
+			</if>
+			<if test="deleteFlag != null and deleteFlag != ''">
+				delete_flag = #{deleteFlag},
+			</if>
+		</set>
+		where emp_id = #{empId}
+	</update>
+	
+	<select id="findById" parameterType="pd" resultType="pd">
+		select <include refid="selectParams"></include>
+		from employee e
+		where emp_id = #{empId}
+			and delete_flag = 0
+	</select>
+	
+	<delete id="deleteById" parameterType = "pd">
+		delete from employee where emp_id = #{empId}
+	</delete>
+	
+	<update id="updateById" parameterType="pd">
+		update employee 
+		set delete_flag = '1', leave_time = #{leaveTime}
+		where emp_id = #{empId}
+	</update>
+	
+	<update id="updateWEPayTimeById" parameterType="pd">
+		update employee
+		set we_payTime = #{wePayTime}
+		where emp_id = #{empId}	
+	</update>
+	
+	<select id="findAlllistPage"  parameterType="page" resultType="pd">
+		select <include refid="selectParams"></include>
+		from employee e
+		<where>
+			delete_flag = 0
+			<if test="pd.name != null and pd.name != ''">
+				and (
+						name like concat('%', #{pd.name}, '%')
+					or idNumber like concat('%', #{pd.name}, '%')
+					) 
+			</if>	
+			<if test="pd.startTime != null and pd.startTime != ''">
+				and STR_TO_DATE(enter_time, "%Y-%m-%d") &gt;= #{pd.startTime}
+			</if>	
+			<if test="pd.endTime != null and pd.endTime != ''">
+				and STR_TO_DATE(enter_time, "%Y-%m-%d") &lt;= #{pd.endTime}
+			</if>	
+		</where>	
+	</select>
+	
+</mapper>

@@ -1,0 +1,103 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="RoomMapper">
+
+	<sql id="selectParams">
+		room_id roomId, roomType_id roomTypeId, room_number roomNumber, gender, total
+	</sql>
+	<sql id="insertParams">
+		roomType_id, room_number, gender, total
+	</sql>
+
+	<!-- <resultMap type="com.hbxy.bean.RoomBean" id="mapBean">
+		<id property="roomId" column="room_id"/>
+		<result property="roomTypeId" column="roomType_id"/>
+		<result property="roomNumber" column="room_number"/>
+		<result property="gender" column="gender"/>
+		<result property="total" column="total"/>
+		<association property="roomType" column="roomType_id" 
+			javaType="com.hbxy.bean.RoomTypeBean" select="com.hbxy.dao.RoomTypeDao.findById">
+		</association>
+	</resultMap> -->
+	
+	<sql id="findParams">
+		r.room_id roomId, room_number roomNumber, gender, total, room_type roomType
+	</sql>
+	
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select <include refid="findParams"></include>
+		from room r, room_type
+		WHERE
+			r.room_id NOT IN (
+				SELECT e.room_id
+				FROM we e
+				WHERE time = #{pd.time}
+			)
+			and r.roomtype_id = room_type.roomtype_Id
+			and total != 0	
+			<if test="pd.roomNumber != null and pd.roomNumber != ''">
+				and (
+						room_number like concat('%', #{pd.roomNumber}, '%')
+					) 
+			</if>
+	</select>
+	
+	<select id="findById" parameterType="pd" resultType="pd">
+		select <include refid="selectParams"></include>
+			from room 
+			where room_id = #{roomId}
+	</select>
+	
+	<insert id="insertRoom" parameterType="pd">
+		insert into room(<include refid="insertParams"></include>)
+			values(#{roomTypeId}, #{roomNumber}, 
+				#{gender}, #{total})		
+	</insert>	
+	
+	<select id="findByRoomType" parameterType="pd" resultType="pd">
+		select <include refid="selectParams"></include>
+		from room
+		where roomType_id = #{roomTypeId}
+		and 
+		(	
+			(gender = #{gender} and total &lt; #{total})
+		 	or gender = '3'
+		)
+	</select>
+	
+	<update id="updateTotalById" parameterType="pd">
+		update room 
+		set gender = #{gender},
+			total = total + 1
+		where room_id = #{roomId}
+	</update>
+	
+	<update id="updateTotalById2" parameterType="pd">
+		update room 
+		set total = total - 1
+		where room_id = #{roomId}
+	</update>
+	
+	<update id="updateGenderById" parameterType="pd">
+		update room 
+		set gender = '3'
+		where room_id = #{roomId} and total = 0
+	</update>
+	
+	<select id="findAlllistPage" parameterType="page" resultType="pd">
+		select r.room_id roomId, room_number roomNumber, gender, total, room_type roomType
+		from room r, room_type 
+		<where>
+			r.roomtype_id = room_type.roomtype_Id
+			<if test="pd.roomNumber != null and pd.roomNumber != ''">
+				and room_number like concat('%', #{pd.roomNumber}, '%')
+			</if>
+			<if test="pd.total != null and pd.total != ''">
+				and total = #{pd.total, jdbcType = NUMERIC}
+			</if>
+			<if test="pd.roomTypeId != null and pd.roomTypeId != '' and pd.roomTypeId != 6">
+				and room_type.roomtype_Id = #{pd.roomTypeId, jdbcType = NUMERIC}
+			</if>
+		</where> 
+	</select>
+</mapper>

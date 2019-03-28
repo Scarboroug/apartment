@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:component-scan base-package="com.hbxy.service"></context:component-scan>
+	<context:component-scan base-package="com.hbxy.dao"></context:component-scan>
+	
+	 <!--加载Properties文件  -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:database.properties" />
+	</bean>
+	
+	<!--加载数据源  -->
+	<!-- org.apache.commons.dbcp.BasicDataSource -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+	</bean>
+	
+	<!--事务  spring的事务管理-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- dataSource:引用上面定义的数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!--SqlSession工厂  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		 <!-- dataSource:引用数据源 -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 加载配置mybatis配置 -->
+		<property name="configLocation" value="classpath:config.xml" />
+		<property name="mapperLocations" value="classpath*:com/hbxy/**/*Mapper.xml"></property>
+		<!--别名设置  -->
+		<property name="typeAliasesPackage"  value="com.hbxy.bean"></property>
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!--1.得到SQLSession 2.通过session得到mapper的实现类放入spring容器中管理  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--指定sql映射文件/接口所在的包（自动扫描） -->
+		<property name="basePackage" value="com.hbxy.dao"/>
+		<!-- 依赖现有的sqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName" 	value="sqlSessionFactory"/>
+	</bean>
+</beans>

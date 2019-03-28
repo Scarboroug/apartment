@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+  
+<mapper namespace="com.hbxy.dao.LoginDao">
+
+	<sql id="selectParams">
+		login_id, login_name, password, role
+	</sql>
+	<sql id="insertParams">
+		login_name, password, role
+	</sql>
+
+	<resultMap type="com.hbxy.bean.LoginBean" id="loginNameMap">
+		<id property="loginId" column="login_id"/>
+		<result property="loginName" column="login_name"/>
+		<result property="password" column="password"/>
+		<result property="role" column="role"/>
+	</resultMap>
+
+	<select id="findByLoginName" parameterType="String" resultMap="loginNameMap">
+		select <include refid="selectParams"></include>
+			from login
+			where login_name = #{loginName}
+	</select>
+	
+	<insert id="insertLogin" parameterType="com.hbxy.bean.LoginBean">
+		insert into Login(<include refid="insertParams"></include>)
+		values(#{loginName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, #{role, jdbcType=NUMERIC})
+	</insert>
+	
+	<update id="updatePasswordByLoginName" parameterType="String">
+		update login set password = #{password, jdbcType=VARCHAR}
+			where login_name = #{loginName, jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="deleteByLoginName" parameterType="string">
+		delete from login 
+			where login_name = #{loginName, jdbcType=VARCHAR}
+	</delete>
+</mapper>

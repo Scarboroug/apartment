@@ -1,0 +1,86 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hbxy.dao.EmployeeDao">
+	<sql id="selectParams">
+		emp_id, name, idNumber, gender, phone, room_id, province, city, 
+		area, street, detailed, enter_time, payment_time, delete_flag	
+	</sql>
+	<sql id="insertParams">
+		name, idNumber, gender, phone, room_id, province, city, 
+		area, street, detailed, enter_time, payment_time, delete_flag	
+	</sql>
+
+	<sql id="where">
+		<where>
+			<if test="empId != null and empId != ''">
+				and emp_id = #{empId}
+			</if>	
+			<if test="name != null and name != ''">
+				and name like concat('%', #{name}, '%') 
+			</if>	
+			<if test="idNumber != null and idNumber != ''">
+				and idNumber = #{idNumber} 
+			</if>	
+			<if test="roomId != null and roomId != ''">
+				and room_id = #{roomId}
+			</if>	
+			<if test="startTime != null and startTime != ''">
+				<!-- and enter_time &gt;= #{startTime} -->
+				<!-- and enter_time &gt;= STR_TO_DATE(DATE_FORMAT(#{startTime},"%y-%m-%d"),"%Y-%m-%d") -->
+				<!-- and STR_TO_DATE(enter_time, "%y-%m-%d") &gt;= STR_TO_DATE(DATE_FORMAT(#{startTime}, "%y-%m-%d"), "%Y-%m-%d") -->
+				and STR_TO_DATE(enter_time, "%Y-%m-%d") &gt;= #{startTime}
+			</if>	
+			<if test="endTime != null and endTime != ''">
+				and STR_TO_DATE(enter_time, "%Y-%m-%d") &lt;= #{endTime}
+			</if>	
+			<if test="paymentTime != null and paymentTime != ''">
+				and STR_TO_DATE(payment_time, "%Y-%m-%d") = #{paymentTime}
+			</if>	
+				and delete_flag = 0 
+		</where>
+	</sql>
+
+	<resultMap type="com.hbxy.bean.EmployeeBean" id="mapBean">
+		<id property="empId" column="emp_id"/>
+		<result property="name" column="name"/>
+		<result property="idNumber" column="idNumber"/>
+		<result property="gender" column="gender"/>
+		<result property="phone" column="phone"/>
+		<result property="roomId" column="room_id"/>
+		<result property="province" column="province"/>
+		<result property="city" column="city"/>
+		<result property="area" column="area"/>
+		<result property="street" column="street"/>
+		<result property="detailed" column="detailed"/>
+		<result property="enterTime" column="enter_time"/>
+		<result property="paymentTime" column="payment_time"/>
+		<result property="mortgageStatus" column="mortgage_status"/>
+		<result property="deleteFlag" column="delete_flag"/>
+		<association property="room" column="room_id" 
+			javaType="com.hbxy.bean.RoomBean" select="com.hbxy.dao.RoomDao.findById">
+		</association>
+	</resultMap>
+
+	<select id="findEmployee" parameterType="com.hbxy.bean.EmployeeBean" resultMap="mapBean">
+		select <include refid="selectParams"></include>
+			from Employee 
+			<include refid="where"></include>
+			limit #{fromIndex}, #{pageSize}
+	</select>
+	
+	<select id="findCountByCondition" resultType="int">
+		select count(0)
+			from Employee
+			<include refid="where"></include>
+	</select>
+	
+	<insert id="insertEmployee" parameterType="com.hbxy.dao.EmployeeDao">
+		insert into employee(<include refid="insertParams"></include>)
+			values(#{name, jdbcType = VARCHAR}, #{idNumber, jdbcType = VARCHAR}, 
+				#{gender, jdbcType = NUMERIC}, #{phone, jdbcType = VARCHAR}, 
+				#{roomId, jdbcType = NUMERIC}, #{province}, 
+				#{city}, #{area},
+				#{street}, #{detailed},
+				#{enterTime}, #{paymentTime}, #{deleteFlag})
+	</insert>
+</mapper>
