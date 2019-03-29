@@ -64,8 +64,8 @@
 									<th class="center">序号</th>
 									<th class="center">房间号</th>
 									<th class="center">房间类型</th>
-									<th class="center">员工人数</th>
-									<th class="center">员工性别</th>
+									<th class="center">人员人数</th>
+									<th class="center">人员性别</th>
 									<th class="center">用水量</th>
 									<th class="center">用电量</th>
 									<th class="center">操作</th>
@@ -135,21 +135,7 @@
 		</div>
 		<!--/#page-content-->
 	</div>
-	<!--/.fluid-container#main-container-->
-	<!-- 引入 -->
-	<%-- <script type="${contextPath }/text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
-	<script src="${contextPath }/static/js/bootstrap.min.js"></script>
-	<script src="${contextPath }/static/js/ace-elements.min.js"></script>
-	<script src="${contextPath }/static/js/ace.min.js"></script>
-	<script type="${contextPath }/text/javascript" src="static/js/chosen.jquery.min.js"></script>
-	<!-- 下拉框 -->
-	<script type="text/javascript"
-		src="${contextPath }/static/js/bootstrap-datepicker.min.js"></script>
-	<!-- 日期框 -->
-	<script type="text/javascript" src="${contextPath }/static/js/bootbox.min.js"></script>
-	<!-- 确认窗口 -->
-	<!-- 引入 -->
-	<script type="text/javascript" src="${contextPath }/static/js/jquery.tips.js"></script> --%>
+
 	<!--提示框-->
 	<script type="text/javascript">
 	

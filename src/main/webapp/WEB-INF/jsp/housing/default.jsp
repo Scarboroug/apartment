@@ -35,13 +35,7 @@
 							</ul>
 						</div>
 						<div class="bd">
-							<ul>
-								<li><img src="static/img/zhe.png" /></li>
-								<li><img src="static/img/shi.png" /></li>
-								<li><img src="static/img/lun.png" /></li>
-								<li><img src="static/img/bo.png" /></li>
-								<li><img src="static/img/tu.png" /></li>
-							</ul>
+
 						</div>
 						下面是前/后按钮代码，如果不需要删除即可
 						<a class="prev" href="javascript:void(0)"></a> <a class="next"

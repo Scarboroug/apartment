@@ -40,7 +40,7 @@
         <div id="saper-hd"></div>
         <div id="saper-bd">
             <div class="subfiled clearfix">
-                <h2>员工资料</h2>
+                <h2>人员资料</h2>
             </div>
             <div class="subfiled-content">
                 <div class="tab-content">

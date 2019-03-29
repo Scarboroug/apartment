@@ -73,8 +73,8 @@
 									<th class="center">序号</th>
 									<th class="center">房间号</th>
 									<th class="center">房间类型</th>
-									<th class="center">员工人数</th>
-									<th class="center">员工性别</th>
+									<th class="center">人员人数</th>
+									<th class="center">人员性别</th>
 									<th class="center">用电量</th>
 									<th class="center">录入时间</th>
 									<th class="center">操作</th>

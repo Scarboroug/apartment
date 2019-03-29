@@ -26,7 +26,7 @@ public class RoomService
 	
 	/**
 	 * Method name: deleteEmployeeById <BR>
-	 * Description: 根据id假删除员工，并更新相应的房间人数，性别 <BR>
+	 * Description: 根据id假删除人员，并更新相应的房间人数，性别 <BR>
 	 * Remark: <BR>
 	 * @param pd
 	 * @throws Exception  void<BR>

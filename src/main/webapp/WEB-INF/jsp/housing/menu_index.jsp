@@ -26,7 +26,7 @@
                 	<li class="office current"><div class="nav-header"><a href="${contextPath }/employee/toIndex.action" target="iframe1" class="clearfix"><span>入住办理</span><i class="icon"></i></a></div></li>
                     <li class="gongwen"><div class="nav-header"><a href="${contextPath }/employee/list.action" target="iframe1" class="clearfix"><span>退房办理</span><i class="icon"></i></a></div></li>
                     <li class="nav-info">
-                    	<div class="nav-header"><a href="${contextPath }/employee/empList.action" class="clearfix"><span>员工信息</span><i class="icon"></i></a></div>
+                    	<div class="nav-header"><a href="${contextPath }/employee/empList.action" class="clearfix"><span>人员信息</span><i class="icon"></i></a></div>
                     </li>
                 </ul>
             </div>

@@ -8,13 +8,13 @@ public interface EmployeeDao
 {
 	
 	/**
-	 * 根据条件模糊查询员工信息
+	 * 根据条件模糊查询人员信息
 	 * @return List<EmployeeBean>
 	 */
 	List<EmployeeBean> findEmployee(EmployeeBean emp);
 	
 	/**
-	 * 添加员工信息
+	 * 添加人员信息
 	 * @param emp
 	 */
 	void insertEmployee(EmployeeBean emp);
