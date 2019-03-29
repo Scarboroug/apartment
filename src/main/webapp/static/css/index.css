@@ -114,7 +114,7 @@ h1{ float:left; margin:14px 0 0 24px; width:184px; height:54px; background:url(.
 }
 
 /*页面主体*/
-#bd{ padding-top:6px; margin:0 4px; background:#fff url(../images/centertopbg.png) repeat-x left top; height: 650px;}
+#bd{ padding-top:6px; margin:0 4px; background:#fff url(../images/centertopbg.png) repeat-x left top;height: 600px;}
 #bd .wrap{padding-bottom:6px; padding-right:6px; background:url(../images/centerbottombg.png) repeat-x left bottom;height: 100%;}
 
 /*左侧栏导航*/
