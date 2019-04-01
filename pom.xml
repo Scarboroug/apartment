@@ -174,7 +174,11 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.jboss</groupId>
+      <artifactId>jboss-vfs</artifactId>
+      <version>3.2.14.Final</version>
+    </dependency>
   </dependencies>
 
   <build>
