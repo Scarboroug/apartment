@@ -1,7 +1,7 @@
 $(".nav").on("click","li",function(){
 	$(this).siblings().removeClass("current");
 	$(this).addClass("current");
-	console.log($('iframe[name=iframe1]'))
+	//console.log($('iframe[name=iframe1]'))
 	$('iframe[name=iframe1]').attr('src', $(this).find("a").attr('href'));
 });
 

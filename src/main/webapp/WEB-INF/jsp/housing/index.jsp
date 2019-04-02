@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${contextPath }/static/js/jquery-3.3.1.min.js" ></script>
 <link rel="stylesheet" href="${contextPath }/common/css/sapar.css" />
 <link rel="stylesheet" type="text/css" href="${contextPath }/common/css/common.css" />
-<link rel="stylesheet" type="text/css" href="${contextPath }/static/system/css/my_info.css" />
+<link rel="stylesheet" type="text/css" href="${contextPath }/static/css/my_info.css" />
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/common.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/cssreset-min.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/My97DatePicker/skin/WdatePicker.css">
@@ -240,28 +240,13 @@
 		}
 		return false;	
 	}
-	
-	/* function checkEnterTime()
-	{
-		var enterTime = $("#checkEnterTime").val();
-		if(enterTime != '')
-		{
-			$("#checkEnterTime").css("color", "green");
-			$("#checkEnterTime").text("✔");
-			return true;
-		}
-		else
-		{
-		}
-		return false;	
-	} */
-	
+
 	function checkFindRoom()
 	{
 		var roomTypeId = $("#roomTypeId").val();
 		var roomId = $("#roomId").val();
-		console.log(roomTypeId);
-		console.log(roomId);
+		// console.log(roomTypeId);
+		// console.log(roomId);
 		if(roomTypeId != 6 && roomId != 0)
 		{
 			$("#checkFindRoom").css("color", "green");

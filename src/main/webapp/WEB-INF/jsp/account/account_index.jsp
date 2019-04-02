@@ -172,7 +172,7 @@
                 	if(!isEmpty(loginName))
                 	{
                 		$.post("${contextPath}/account/checkUser.action", {loginName: loginName}, function(data){
-                			console.log(data);
+                			// console.log(data);
                 			if(data != 'SUCCESS')
                 			{
                 				parent.layer.msg('用户名已存在');
@@ -229,8 +229,8 @@
                 	var password1 = body.find("#password1").val();
                 	var loginName = body.find("#loginName").val();
                 	newPassword = hex_md5(newPassword).toUpperCase();
-                	console.log(newPassword);
-                	console.log(oldPassword);
+                	// console.log(newPassword);
+                	// console.log(oldPassword);
                 	
                 	if(isEmpty(loginName))
                 	{

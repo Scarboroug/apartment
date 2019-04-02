@@ -13,6 +13,22 @@
 <link type="text/css" rel="stylesheet" href="${contextPath }/js/layer/mobile/need/layer.css"/>
 <script type="text/javascript" src="${contextPath }/js/layer/layer.js" ></script>
 <title>公寓管理系统</title>
+
+    <script type="text/javascript">
+        $(function() {
+            $("li").click(function(){
+                $("li").removeClass("current");
+                $(this).addClass("current");
+            })
+        })
+    </script>
+    //a  标签去掉下划线
+    <style type="text/css">
+        a:link{text-decoration:none ; color:white ;}
+        a:visited {text-decoration:none ; color:white;}
+        a:hover {text-decoration:underline ; color:white;}
+        a:active {text-decoration:none ; color:white;}
+    </style>
 </head>
 
 <body>
@@ -22,7 +38,7 @@
         	<div class="top-light"></div>
             <h1 class="logo"></h1>
             <ul class="main-nav clearfix">
-                <li class="current"><a href="${contextPath }/employee/toMenuIndex.action" target="iframe">住宿办理</a></li>
+                <li><a href="${contextPath }/employee/toMenuIndex.action" target="iframe">住宿办理</a></li>
                 <li><a href="${contextPath }/payment/toMenuIndex.action" target="iframe">缴费管理</a></li>
                 <li><a href="${contextPath }/dataEntry/toMenuIndex.action" target="iframe">数据录入</a></li>
                 <li><a href="${contextPath }/room/toMenuIndex.action" target="iframe">房间管理</a></li>

@@ -32,7 +32,7 @@ import java.util.Properties;
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
 public class PagePlugin implements Interceptor {
 
-	private static String dialect = ""; // 数据库方言
+	private static String dialect = ""; // 数据库语言
 	private static String pageSqlId = ""; // mapper.xml中需要拦截的ID(正则匹配)
 
 	public Object intercept(Invocation ivk) throws Throwable {
@@ -135,7 +135,7 @@ public class PagePlugin implements Interceptor {
 	}
 
 	/**
-	 * 根据数据库方言，生成特定的分页sql
+	 * 根据数据库语言，生成特定的分页sql
 	 * @param sql
 	 * @param page
 	 * @return

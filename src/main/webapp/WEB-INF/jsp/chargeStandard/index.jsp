@@ -136,7 +136,6 @@
                 content:'${contextPath }/chargeStandard/goEdit.action?csId=' + id,
                 btn:['保存','返回'],
                 yes:function (index,layero) {
-                	console.log(123);
                 	var body = layer.getChildFrame('body', index);
                 	body.find('#infoForm').submit();
                 	layer.close(index);
