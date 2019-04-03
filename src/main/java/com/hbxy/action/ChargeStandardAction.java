@@ -4,22 +4,22 @@ import com.hbxy.bean.Page;
 import com.hbxy.service.ChargeStandardService;
 import com.hbxy.service.RoomTypeService;
 import com.hbxy.util.PageData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
 @RequestMapping("chargeStandard")
 public class ChargeStandardAction extends BaseAction
 {
-	@Resource(name = "chargeStandardService")
-	ChargeStandardService chargeStandardService;
+	@Autowired
+	private ChargeStandardService chargeStandardService;
 	
-	@Resource(name = "roomTypeService")
-	RoomTypeService roomTypeService;
+	@Autowired
+	private RoomTypeService roomTypeService;
 	
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()

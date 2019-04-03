@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class BaseAction {
+public class  BaseAction {
 
 	protected Logger logger = Logger.getLogger(this.getClass());
 

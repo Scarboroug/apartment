@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${contextPath }/static/js/jquery-3.3.1.min.js" ></script>
 <link rel="stylesheet" href="${contextPath }/common/css/sapar.css" />
 <link rel="stylesheet" type="text/css" href="${contextPath }/common/css/common.css" />
-<link rel="stylesheet" type="text/css" href="${contextPath }/static/system/css/my_info.css" />
+<link rel="stylesheet" type="text/css" href="${contextPath }/static/css/my_info.css" />
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/common.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/cssreset-min.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/My97DatePicker/skin/WdatePicker.css">

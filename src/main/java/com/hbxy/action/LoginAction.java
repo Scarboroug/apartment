@@ -5,12 +5,12 @@ import com.hbxy.common.Constant;
 import com.hbxy.service.EmployeeService;
 import com.hbxy.service.LoginService;
 import com.ndktools.javamd5.Mademd5;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("login")
 public class LoginAction extends BaseAction
 {
-	@Resource(name = "loginService")
+	@Autowired
 	private LoginService loginService;
 	
-	@Resource(name = "employeeService")
+	@Autowired
 	private EmployeeService employeeService;
 	
 	@RequestMapping("toLogin")

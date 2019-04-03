@@ -18,7 +18,7 @@ import java.util.List;
 public class AccountAction extends BaseAction
 {
 	@Autowired
-	AccountService accountService;
+	private AccountService accountService;
 	
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()

@@ -3,17 +3,17 @@ package com.hbxy.service;
 import com.hbxy.bean.Page;
 import com.hbxy.dao.DaoSupport;
 import com.hbxy.util.PageData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service("employeeService")
+@Service
 @Transactional("transactionManager")
 public class EmployeeService
 {
-	@Resource(name = "daoSupport")
+	@Autowired
 	private DaoSupport dao;
 	
 	public void updateEmpById(PageData pd) throws Exception

@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 通用DAO
  */
-@Repository("daoSupport")
+@Repository
 public class DaoSupport implements DAO {
 
 	@Autowired

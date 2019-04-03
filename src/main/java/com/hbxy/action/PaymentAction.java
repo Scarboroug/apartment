@@ -8,12 +8,12 @@ import com.hbxy.service.PaymentService;
 import com.hbxy.util.DateUtil;
 import com.hbxy.util.PageData;
 import com.hbxy.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -25,14 +25,14 @@ import java.util.List;
 @RequestMapping("payment")
 public class PaymentAction extends BaseAction
 {
-	@Resource(name = "paymentService")
-	PaymentService paymentService;
+	@Autowired
+	private PaymentService paymentService;
 	
-	@Resource(name = "chargeStandardService")
-	ChargeStandardService chargeStandardService;
+	@Autowired
+	private ChargeStandardService chargeStandardService;
 	
-	@Resource(name = "employeeService")
-	EmployeeService employeeService;
+	@Autowired
+	private EmployeeService employeeService;
 	
 	@RequestMapping("toMenuIndex")
 	public ModelAndView toMenuIndex()

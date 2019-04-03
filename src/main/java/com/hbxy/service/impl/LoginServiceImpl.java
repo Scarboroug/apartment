@@ -1,17 +1,15 @@
 package com.hbxy.service.impl;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.hbxy.bean.LoginBean;
 import com.hbxy.dao.LoginDao;
 import com.hbxy.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Service("loginService")
+@Service
 public class LoginServiceImpl implements LoginService
 {
-	@Resource
+	@Autowired
 	private LoginDao loginDao;
 	
 	@Override

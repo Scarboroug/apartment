@@ -10,29 +10,29 @@ import com.hbxy.service.RoomTypeService;
 import com.hbxy.util.DateUtil;
 import com.hbxy.util.PageData;
 import com.hbxy.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 @Controller
 @RequestMapping("employee")
 public class EmployeeAction extends BaseAction
 {
-	@Resource(name = "employeeService")
-	EmployeeService employeeService;
-	
-	@Resource(name = "roomService")
-	RoomService roomService;
-	
-	@Resource(name = "roomTypeService")
-	RoomTypeService roomTypeService;
-	
-	@Resource(name = "chargeStandardService")
-	ChargeStandardService chargeStandardService;
+	@Autowired
+	private EmployeeService employeeService;
+
+	@Autowired
+	private RoomService roomService;
+
+	@Autowired
+	private RoomTypeService roomTypeService;
+
+	@Autowired
+	private ChargeStandardService chargeStandardService;
 	
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()

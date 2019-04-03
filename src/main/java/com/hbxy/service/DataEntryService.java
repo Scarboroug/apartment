@@ -3,15 +3,15 @@ package com.hbxy.service;
 import com.hbxy.bean.Page;
 import com.hbxy.dao.DaoSupport;
 import com.hbxy.util.PageData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service("dataEntry")
+@Service
 public class DataEntryService
 {
-	@Resource(name = "daoSupport")
+	@Autowired
 	DaoSupport dao;
 	
 	public void save(PageData pd) throws Exception

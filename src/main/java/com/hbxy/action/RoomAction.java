@@ -3,19 +3,19 @@ package com.hbxy.action;
 import com.hbxy.bean.Page;
 import com.hbxy.service.RoomService;
 import com.hbxy.util.PageData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
 @RequestMapping("room")
 public class RoomAction extends BaseAction
 {
-	@Resource(name = "roomService")
-	RoomService roomservice;
+	@Autowired
+	private RoomService roomservice;
 	
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()

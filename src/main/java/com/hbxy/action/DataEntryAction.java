@@ -9,12 +9,12 @@ import com.hbxy.service.RoomService;
 import com.hbxy.util.DateUtil;
 import com.hbxy.util.PageData;
 import com.hbxy.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,17 +24,17 @@ import java.util.List;
 @RequestMapping("dataEntry")
 public class DataEntryAction extends BaseAction
 {
-	@Resource(name = "dataEntry")
-	DataEntryService dataEntryService;
-	
-	@Resource(name = "roomService")
-	RoomService RoomService;
-	
-	@Resource(name = "paymentService")
-	PaymentService paymentService;
-	
-	@Resource(name = "employeeService")
-	EmployeeService employeeService;
+	@Autowired
+	private DataEntryService dataEntryService;
+
+	@Autowired
+	private RoomService RoomService;
+
+	@Autowired
+	private PaymentService paymentService;
+
+	@Autowired
+	private EmployeeService employeeService;
 	
 	@RequestMapping("toMenuIndex")
 	public ModelAndView toMenuIndex()
