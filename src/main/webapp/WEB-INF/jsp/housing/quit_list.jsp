@@ -37,7 +37,7 @@
 		.subfile{
 			position: relative;
 		    line-height: 33px;
-		    background: url(common/images/righttitlebig.png) repeat-x scroll 0% 0% transparent;
+		    background: url('../webapp/common/images/righttitlebig.png') repeat-x scroll 0% 0% transparent;
 		    border: 1px solid #C1D3DE;
 		    overflow: visible;
 		}
@@ -48,7 +48,7 @@
 		    font-weight: bold;
 		    font-size: 14px;
 		    color: #000;
-		    background: url(common/images/titleico.png) no-repeat scroll left center transparent;
+		    background: url('../webapp/common/images/titleico.png') no-repeat scroll left center transparent;
 		}
 	</style>
 </head>

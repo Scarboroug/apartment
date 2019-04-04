@@ -20,7 +20,11 @@ public class ChargeStandardAction extends BaseAction
 	
 	@Autowired
 	private RoomTypeService roomTypeService;
-	
+
+	/**
+	 * 收费标准管理
+	 * @return
+	 */
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()
 	{
@@ -32,7 +36,12 @@ public class ChargeStandardAction extends BaseAction
 	{
 		return "chargeStandard/index";
 	}
-	
+
+	/**
+	 * 收费标准管理列表
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("list")
 	public ModelAndView list(Page page)
 	{
@@ -54,7 +63,11 @@ public class ChargeStandardAction extends BaseAction
 		mv.setViewName("chargeStandard/index");
 		return mv;
 	}
-	
+
+	/**
+	 * 修改标准
+	 * @return
+	 */
 	@RequestMapping("goEdit")
 	public ModelAndView goEdit()
 	{
@@ -73,7 +86,11 @@ public class ChargeStandardAction extends BaseAction
 		mv.setViewName("chargeStandard/chargeStandard_edit");
 		return mv;
 	}
-	
+
+	/**
+	 * 持久化
+	 * @return
+	 */
 	@RequestMapping("edit")
 	public ModelAndView edit()
 	{
@@ -91,7 +108,12 @@ public class ChargeStandardAction extends BaseAction
 		mv.setViewName("chargeStandard/index");
 		return mv;
 	}
-	
+
+	/**
+	 * 租金标准列表
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("roomTypeList")
 	public ModelAndView roomTypeList(Page page)
 	{
@@ -111,7 +133,11 @@ public class ChargeStandardAction extends BaseAction
 		mv.addObject("varList", list);
 		return mv;
 	}
-	
+
+	/**
+	 * 修改租金
+	 * @return
+	 */
 	@RequestMapping("goRoomTypeEdit")
 	public ModelAndView goRoomTypeEdit()
 	{
@@ -130,7 +156,11 @@ public class ChargeStandardAction extends BaseAction
 		mv.setViewName("chargeStandard/roomType_edit");
 		return mv;
 	}
-	
+
+	/**
+	 * 持久化
+	 * @return
+	 */
 	@RequestMapping("roomTypeEdit")
 	public ModelAndView roomTypeEdit()
 	{

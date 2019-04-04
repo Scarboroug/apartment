@@ -21,27 +21,10 @@
 <body>
 	<div class="container-fluid" id="main-container">
 		<!-- #main-content -->
-		<div class="main-content">
+		<div class="main-content" style="height: 500px">
 			<div style="display: flex;justify-content: space-between;">
 				<div style="margin-right: 20px;width:100%">
-					<!-- <div id="slideBox" class="slideBox" style="height:50%">
-						<div class="hd">
-							<ul>
-								<li>1</li>
-								<li>2</li>
-								<li>3</li>
-								<li>4</li>
-								<li>5</li>
-							</ul>
-						</div>
-						<div class="bd">
-
-						</div>
-						下面是前/后按钮代码，如果不需要删除即可
-						<a class="prev" href="javascript:void(0)"></a> <a class="next"
-							href="javascript:void(0)"></a>
-					</div> -->
-				<p style="margin-left:220px;padding-top: 190px; font-size: 40px;">xx公寓欢迎您！</p>
+				<%--<p style="margin-left:250px;padding-top: 40px; font-size: 40px;">xx公寓欢迎您！</p>--%>
 				</div>
 				<div>
 					<div class="time-block">

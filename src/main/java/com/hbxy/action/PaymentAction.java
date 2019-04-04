@@ -33,7 +33,11 @@ public class PaymentAction extends BaseAction
 	
 	@Autowired
 	private EmployeeService employeeService;
-	
+
+    /**
+     * 缴费管理
+     * @return
+     */
 	@RequestMapping("toMenuIndex")
 	public ModelAndView toMenuIndex()
 	{
@@ -41,7 +45,12 @@ public class PaymentAction extends BaseAction
 		mv.setViewName("payment/menu_index");
 		return mv;
 	}
-	
+
+	/**
+	 * 房租缴费列表
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("list")
 	public ModelAndView list(Page page)
 	{
@@ -71,7 +80,12 @@ public class PaymentAction extends BaseAction
 		mv.setViewName("payment/payment_rent");
 		return mv;
 	}
-	
+
+	/**
+	 * 水电缴费列表
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("weList")
 	public ModelAndView weList(Page page)
 	{
@@ -185,7 +199,11 @@ public class PaymentAction extends BaseAction
 		}
 		return price;
 	}
-	
+
+	/**
+	 * 缴费水电
+	 * @return
+	 */
 	@RequestMapping("payWE")
 	@ResponseBody
 	public String payWE()
@@ -231,7 +249,11 @@ public class PaymentAction extends BaseAction
 		
 		return Constant.AJAX_SUCCESS;
 	}
-	
+
+	/**
+	 * 缴费房租
+	 * @return
+	 */
 	@RequestMapping("payRental")
 	@ResponseBody
 	public Object payRental()

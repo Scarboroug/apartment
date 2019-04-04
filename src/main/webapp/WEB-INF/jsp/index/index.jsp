@@ -22,7 +22,7 @@
             })
         })
     </script>
-    //a  标签去掉下划线
+    <%--a  标签去掉下划线--%>
     <style type="text/css">
         a:link{text-decoration:none ; color:white ;}
         a:visited {text-decoration:none ; color:white;}

@@ -33,13 +33,21 @@ public class EmployeeAction extends BaseAction
 
 	@Autowired
 	private ChargeStandardService chargeStandardService;
-	
+
+	/**
+	 * 住宿办理/首页
+	 * @return
+	 */
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()
 	{
 		return "housing/menu_index";
 	}
-	
+
+	/**
+	 * 入住办理
+	 * @return
+	 */
 	@RequestMapping("toIndex")
 	public String toIndex()
 	{
@@ -219,7 +227,11 @@ public class EmployeeAction extends BaseAction
 		
 		return JSONUtils.toJSONString(map);
 	}
-	
+
+	/**
+	 * 退房
+	 * @return
+	 */
 	@RequestMapping("quitHousing")
 	@ResponseBody
 	public String quitHousing()
@@ -239,7 +251,12 @@ public class EmployeeAction extends BaseAction
 		}
 		return Constant.AJAX_SUCCESS;
 	}
-	
+
+	/**
+	 * 人员信息
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("empList")
 	public ModelAndView empList(Page page)
 	{
@@ -265,7 +282,11 @@ public class EmployeeAction extends BaseAction
 		
 		return mv;
 	}
-	
+
+	/**
+	 * 展示修改的人员信息
+	 * @return
+	 */
 	@RequestMapping("goEmployeeEdit")
 	public ModelAndView goEdit()
 	{
@@ -284,7 +305,11 @@ public class EmployeeAction extends BaseAction
 		mv.setViewName("housing/employee_edit");
 		return mv;
 	}
-	
+
+	/**
+	 * 修改人员信息
+	 * @return
+	 */
 	@RequestMapping("empEdit")
 	public ModelAndView empEdit()
 	{

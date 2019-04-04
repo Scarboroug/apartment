@@ -34,11 +34,10 @@
 	<!-- 导入日期插件 -->
 	<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>   
 	<style type="text/css">
-	<style>
 		.subfile{
 			position: relative;
 		    line-height: 33px;
-		    background: url(common/images/righttitlebig.png) repeat-x scroll 0% 0% transparent;
+		    background: url('../webapp/common/images/righttitlebig.png') repeat-x scroll 0% 0% transparent;
 		    border: 1px solid #C1D3DE;
 		    overflow: visible;
 		}
@@ -49,7 +48,7 @@
 		    font-weight: bold;
 		    font-size: 14px;
 		    color: #000;
-		    background: url(common/images/titleico.png) no-repeat scroll left center transparent;
+		    background: url('../webapp/common/images/titleico.png') no-repeat scroll left center transparent;
 		}
 	</style>
 </head>
@@ -58,9 +57,6 @@
 		<div id="page-content" class="clearfix">
 			<div class="row-fluid">
 				<div class="row-fluid">
-				<!-- <div class="saper-container saper-bd clearfix">
-	                <h2>我的资料</h2>
-	            </div> -->
 					<!-- 检索  -->
 					<form action="account/${msg}.action" method="post" name="Form" id="Form">
 						<table id="table_report" class="table table-striped table-bordered table-hover">

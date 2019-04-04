@@ -35,7 +35,11 @@ public class DataEntryAction extends BaseAction
 
 	@Autowired
 	private EmployeeService employeeService;
-	
+
+	/**
+	 * 数据录入
+	 * @return
+	 */
 	@RequestMapping("toMenuIndex")
 	public ModelAndView toMenuIndex()
 	{
@@ -43,7 +47,12 @@ public class DataEntryAction extends BaseAction
 		mv.setViewName("dataEntry/dataEntry_menu");
 		return mv;
 	}
-	
+
+	/**
+	 * 水电用量
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("list")
 	public ModelAndView list(Page page)
 	{
@@ -74,7 +83,12 @@ public class DataEntryAction extends BaseAction
 		
 		return mv;
 	}
-	
+
+	/**
+	 * 用水量
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("waterList")
 	public ModelAndView waterList(Page page)
 	{
@@ -101,7 +115,12 @@ public class DataEntryAction extends BaseAction
 		mv.addObject("varList", list);
 		return mv;
 	}
-	
+
+	/**
+	 * 用电量
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("electricList")
 	public ModelAndView electricList(Page page)
 	{
@@ -128,18 +147,11 @@ public class DataEntryAction extends BaseAction
 		mv.addObject("varList", list);
 		return mv;
 	}
-	
-	@RequestMapping("toIndex")
-	public ModelAndView toIndex()
-	{
-		ModelAndView mv = this.getModelAndView();
-		PageData pd = this.getPageData();
-		mv.setViewName("dataEntry/dataEntry_index");
-		mv.addObject("pd", pd);
-		mv.addObject("msg", "list");
-		return mv;
-	}
-	
+
+	/**
+	 * 录入
+	 * @return
+	 */
 	@RequestMapping("save")
 	@ResponseBody
 	public Object save()
@@ -203,7 +215,11 @@ public class DataEntryAction extends BaseAction
 		
 		return Constant.AJAX_SUCCESS;
 	}
-	
+
+	/**
+	 * 获取用水量
+	 * @return
+	 */
 	@RequestMapping("goWaterEdit")
 	public ModelAndView goEdit()
 	{
@@ -223,7 +239,10 @@ public class DataEntryAction extends BaseAction
 
 		return mv;
 	}
-	
+
+	/**
+	 * 保存用水量
+	 */
 	@RequestMapping("waterEdit")
 	@ResponseBody
 	public void waterEdit()
@@ -237,7 +256,11 @@ public class DataEntryAction extends BaseAction
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 *  获取用电量
+	 * @return
+	 */
 	@RequestMapping("goElectricEdit")
 	public ModelAndView goElectricEdit()
 	{
@@ -257,7 +280,10 @@ public class DataEntryAction extends BaseAction
 
 		return mv;
 	}
-	
+
+	/**
+	 * 保存用电量
+	 */
 	@RequestMapping("electircEdit")
 	@ResponseBody
 	public void electircEdit()

@@ -19,7 +19,11 @@ public class AccountAction extends BaseAction
 {
 	@Autowired
 	private AccountService accountService;
-	
+
+    /**
+     * 账户管理
+     * @return
+     */
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()
 	{
@@ -31,7 +35,12 @@ public class AccountAction extends BaseAction
 	{
 		return "account/account_index";
 	}
-	
+
+	/**
+	 * 账户管理列表
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("list")
 	public ModelAndView list(Page page)
 	{
@@ -48,15 +57,18 @@ public class AccountAction extends BaseAction
 		{
 			e.printStackTrace();
 		}
-		
-		
+
 		mv.addObject("pd", pd);
 		mv.addObject("msg", "list");
 		mv.addObject("varList", list);
 		mv.setViewName("account/account_index");
 		return mv;
 	}
-	
+
+	/**
+	 * 新增账号
+	 * @return
+	 */
 	@RequestMapping("goSave")
 	public ModelAndView goSave()
 	{
@@ -65,7 +77,11 @@ public class AccountAction extends BaseAction
 		mv.setViewName("account/account_add");
 		return mv;
 	}
-	
+
+	/**
+	 * 新增账号持久化
+	 * @return
+	 */
 	@RequestMapping("save")
 	public ModelAndView save()
 	{
@@ -86,7 +102,11 @@ public class AccountAction extends BaseAction
 		mv.setViewName("account/account_add");
 		return mv;
 	}
-	
+
+	/**
+	 * 重置密码与修改
+	 * @return
+	 */
 	@RequestMapping("goEdit")
 	public ModelAndView goEdit()
 	{
@@ -105,7 +125,11 @@ public class AccountAction extends BaseAction
 		mv.setViewName("account/account_edit");
 		return mv;
 	}
-	
+
+	/**
+	 * 重置密码与修改持久化
+	 * @return
+	 */
 	@RequestMapping("edit")
 	public ModelAndView edit()
 	{
@@ -123,7 +147,11 @@ public class AccountAction extends BaseAction
 		mv.setViewName("account/account_add");
 		return mv;
 	}
-	
+
+	/**
+	 * 批量删除
+	 * @return
+	 */
 	@RequestMapping("removeAll")
 	@ResponseBody
 	public String removeAll()
@@ -150,7 +178,11 @@ public class AccountAction extends BaseAction
 		
 		return Constant.AJAX_SUCCESS;
 	}
-	
+
+	/**
+	 * 验重
+	 * @return
+	 */
 	@RequestMapping("checkUser")
 	@ResponseBody
 	public String checkUser()

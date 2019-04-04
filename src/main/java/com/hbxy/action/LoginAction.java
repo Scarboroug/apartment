@@ -2,9 +2,9 @@ package com.hbxy.action;
 
 import com.hbxy.bean.LoginBean;
 import com.hbxy.common.Constant;
-import com.hbxy.service.EmployeeService;
 import com.hbxy.service.LoginService;
 import com.ndktools.javamd5.Mademd5;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +18,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("login")
 public class LoginAction extends BaseAction
 {
+	Logger logger = Logger.getLogger(LoginAction.class);
 	@Autowired
 	private LoginService loginService;
-	
-	@Autowired
-	private EmployeeService employeeService;
 	
 	@RequestMapping("toLogin")
 	public String toLogin()
@@ -36,13 +34,20 @@ public class LoginAction extends BaseAction
 	{
 		return "index/index";
 	}
-	
+
+	/**
+	 * 登录
+	 * @param request
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	@RequestMapping("doLogin")
 	@ResponseBody
 	public String doLogin(HttpServletRequest request, String userName, String password)
 	{
+
 		LoginBean loginBean = loginService.findByLoginName(userName);
-		//System.out.println(loginBean);
 		if(loginBean != null)
 		{
 			if(loginBean.getPassword().equals(new Mademd5().toMd5(password)))
@@ -57,13 +62,16 @@ public class LoginAction extends BaseAction
 		
 		return Constant.AJAX_FAIL;
 	}
-	
+
+	/**
+	 * 登出
+	 * @return
+	 */
 	@RequestMapping("logout")
 	public ModelAndView logout()
 	{
 		try
 		{
-//			pd = employeeService.findById(pd);
 			HttpSession session = this.getRequest().getSession();
 			session.removeAttribute(Constant.SESSION_USER_NAME_STRING);
 			session.removeAttribute(Constant.SESSION_USER_ROLE_INTEGER);

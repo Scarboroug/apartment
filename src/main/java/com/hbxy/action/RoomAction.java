@@ -16,13 +16,22 @@ public class RoomAction extends BaseAction
 {
 	@Autowired
 	private RoomService roomservice;
-	
+
+    /**
+     * 房间管理
+     * @return
+     */
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex()
 	{
 		return "room/room_menu";
 	}
-	
+
+	/**
+	 * 房间管理列表
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("list")
 	public ModelAndView list(Page page)
 	{
@@ -46,7 +55,11 @@ public class RoomAction extends BaseAction
 		mv.setViewName("room/room_index");
 		return mv;
 	}
-	
+
+	/**
+	 * 新增房间
+	 * @return
+	 */
 	@RequestMapping("goSave")
 	public ModelAndView goSave()
 	{
@@ -55,7 +68,11 @@ public class RoomAction extends BaseAction
 		mv.addObject("msg", "save");
 		return mv;
 	}
-	
+
+	/**
+	 * 持久化
+	 * @return
+	 */
 	@RequestMapping("save")
 	public ModelAndView save()
 	{
