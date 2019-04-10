@@ -6,7 +6,7 @@ package com.hbxy.common;
 public class Constant {
 	
 	/**
-	 * 文件分割分
+	 * 文件分割符
 	 */
 	public static final String FILE_SEPARATOR = "/";
 
