@@ -8,9 +8,9 @@ import java.util.List;
 public interface RoomService
 {
 
-	public List<PageData> findByRoomType(PageData pd) throws Exception;
+	List<PageData> findByRoomType(PageData pd) throws Exception;
 	
-	public PageData findById(PageData pd) throws Exception;
+	PageData findById(PageData pd) throws Exception;
 	
 	/**
 	 * Method name: deleteEmployeeById <BR>
@@ -19,11 +19,11 @@ public interface RoomService
 	 * @param pd
 	 * @throws Exception  void<BR>
 	 */
-	public void deleteEmployeeById(PageData pd) throws Exception;
-	
-	public List<PageData> findRoomByWE(Page page) throws Exception;
+	void deleteEmployeeById(PageData pd) throws Exception;
 
-	public List<PageData> findAlllistPage(Page page) throws Exception;
+	List<PageData> findRoomByWE(Page page) throws Exception;
+
+	List<PageData> findAlllistPage(Page page) throws Exception;
 	
-	public void insertRoom(PageData pd) throws Exception;
+	void insertRoom(PageData pd) throws Exception;
 }

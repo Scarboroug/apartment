@@ -8,12 +8,12 @@ import java.util.List;
 public interface PaymentService
 {
 
-	public List<PageData> listPage(PageData pd) throws Exception;
+	List<PageData> listPage(PageData pd) throws Exception;
 	
-	public List<PageData> listPage(Page page) throws Exception;
+	List<PageData> listPage(Page page) throws Exception;
 	
-	public List<PageData> findEmpByRoomId(PageData pd) throws Exception;
+	List<PageData> findEmpByRoomId(PageData pd) throws Exception;
 	
-	public List<PageData> findRentlistPage(Page page) throws Exception;
+	List<PageData> findRentlistPage(Page page) throws Exception;
 
 }

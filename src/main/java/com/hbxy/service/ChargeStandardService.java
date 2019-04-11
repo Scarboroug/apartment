@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ChargeStandardService
 {
-	public PageData findById(PageData pd) throws Exception;
+	PageData findById(PageData pd) throws Exception;
 	
-	public void updateById(PageData pd) throws Exception;
+	void updateById(PageData pd) throws Exception;
 	
-	public List<PageData> findAll(Page page) throws Exception;
+	List<PageData> findAll(Page page) throws Exception;
 }

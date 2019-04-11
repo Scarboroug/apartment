@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface DataEntryService
 {
-	public void save(PageData pd) throws Exception;
+	void save(PageData pd) throws Exception;
 	
-	public void updateById(PageData pd) throws Exception;
+	void updateById(PageData pd) throws Exception;
 	
-	public PageData findById(PageData pd) throws Exception;
+	PageData findById(PageData pd) throws Exception;
 	
-	public List<PageData> listPage(Page page) throws Exception;
+	List<PageData> listPage(Page page) throws Exception;
 	
-	public List<PageData> updateDaysById(PageData pd) throws Exception;
+	List<PageData> updateDaysById(PageData pd) throws Exception;
 	
 }
