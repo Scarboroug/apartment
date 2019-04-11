@@ -61,7 +61,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<!-- 检索  -->
-					<form action="payment/${msg}.action" method="post" name="Form" id="Form">
+					<form action="payment/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 							<tr>
 								<td>
@@ -155,7 +155,7 @@
 		}
 		function payment(empId, price)
 		{
-			var url = "${contextPath}/payment/payWE.action";
+			var url = "${contextPath}/payment/payWE.do";
 			//var reqData = ("#Form").serialize();
 			var time = $("#time").val();
 			var roomNumber = $("#roomNumber").val();
@@ -165,7 +165,7 @@
 				if(data = 'SUCCESS')
 				{
 					layer.alert("支付成功", {icon: 1});
-					//window.location.href = "${contextPath }/payment/paymentWE.action";
+					//window.location.href = "${contextPath }/payment/paymentWE.do";
 					$("#Form").submit();
 				}
 				else

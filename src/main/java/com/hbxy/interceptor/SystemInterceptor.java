@@ -25,8 +25,8 @@ public class SystemInterceptor extends HandlerInterceptorAdapter
 		String uri = request.getRequestURI();
 		log.debug("Pre-handle url=" + uri);
 
-		if (uri.endsWith(request.getContextPath() + "/login/toLogin.action")
-				|| uri.endsWith(request.getContextPath() + "/login/doLogin.action"))
+		if (uri.endsWith(request.getContextPath() + "/login/toLogin.do")
+				|| uri.endsWith(request.getContextPath() + "/login/doLogin.do"))
 		{
 			log.debug(uri + " 不进行拦截");
 			log.info(uri + " 不进行拦截");
@@ -47,6 +47,7 @@ public class SystemInterceptor extends HandlerInterceptorAdapter
 					if (((HandlerMethod) handler).getMethod().isAnnotationPresent(ResponseBody.class))
 					{
 						response.sendRedirect(request.getContextPath() + "/ajaxSessionOut.txt");
+						System.out.println(request.getContextPath() + "/ajaxSessionOut.txt");
 					} else
 					{
 						// 非ajax请求,页面跳转请求

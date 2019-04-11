@@ -61,7 +61,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<!-- 检索  -->
-					<form action="employee/${msg}.action" method="post" name="Form" id="Form">
+					<form action="employee/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 							<tr>
 								<td>
@@ -177,13 +177,13 @@
                 type:2,
                 area: ['500px', '450px'],
                 resize:false,
-                content:'${contextPath }/employee/goEmployeeEdit.action?empId=' + id,
+                content:'${contextPath }/employee/goEmployeeEdit.do?empId=' + id,
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
                 	body.find('#infoForm').submit();
                 	layer.close(index);
-                	window.location.href = "${contextPath }/employee/empList.action";
+                	window.location.href = "${contextPath }/employee/empList.do";
                 },
                 btn2:function () {
                 }

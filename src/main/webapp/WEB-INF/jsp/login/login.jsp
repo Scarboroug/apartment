@@ -96,7 +96,7 @@
 			return;
 		}
 		
-		var url = '<%=request.getContextPath()%>/login/doLogin.action';
+		var url = '<%=request.getContextPath()%>/login/doLogin.do';
 		var reqData = $("#loginForm").serialize();
 		$.ajax({
 			type: "POST",
@@ -108,7 +108,7 @@
 				
 				if(data == 'SUCCESS')
 				{
-					window.location.href = "${contextPath}/login/toIndex.action";
+					window.location.href = "${contextPath}/login/toIndex.do";
 				}
 				else
 				{

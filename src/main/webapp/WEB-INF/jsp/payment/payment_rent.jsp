@@ -60,7 +60,7 @@
 	                <h2>我的资料</h2>
 	            </div> -->
 					<!-- 检索  -->
-					<form action="payment/${msg}.action" method="post" name="Form" id="Form">
+					<form action="payment/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 							<tr>
 								<td>
@@ -157,14 +157,14 @@
 		function payRental(empId)
 		{
 			
-			var url = "${contextPath}/payment/payRental.action";
+			var url = "${contextPath}/payment/payRental.do";
 			var reqData = "empId=" + empId;
 			$.post(url, reqData, function(data){
 				
 				if(data = 'SUCCESS')
 				{
 					layer.alert("缴费成功！", {icon: 1});
-					window.location.href = "${contextPath }/payment/list.action";
+					window.location.href = "${contextPath }/payment/list.do";
 				}
 			}, "text");
 		}

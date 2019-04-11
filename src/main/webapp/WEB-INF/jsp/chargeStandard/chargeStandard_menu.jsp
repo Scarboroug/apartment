@@ -22,11 +22,11 @@
         	<div class="sidebar">
             	<h2 class="sidebar-header"><p>功能导航</p></h2>
                 <ul class="nav">
-                	<li class="office current"><div class="nav-header"><a href="${contextPath }/chargeStandard/list.action" target="iframe1" class="clearfix"><span>收费标准</span><i class="icon"></i></a></div></li>
-                    <li class="gongwen"><div class="nav-header"><a href="${contextPath }/chargeStandard/roomTypeList.action" target="iframe1" class="clearfix"><span>租金标准</span><i class="icon"></i></a></div></li>
+                	<li class="office current"><div class="nav-header"><a href="${contextPath }/chargeStandard/list.do" target="iframe1" class="clearfix"><span>收费标准</span><i class="icon"></i></a></div></li>
+                    <li class="gongwen"><div class="nav-header"><a href="${contextPath }/chargeStandard/roomTypeList.do" target="iframe1" class="clearfix"><span>租金标准</span><i class="icon"></i></a></div></li>
                 </ul>
             </div>
-            <iframe src="${contextPath }/chargeStandard/list.action" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
+            <iframe src="${contextPath }/chargeStandard/list.do" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </div>
 </div>

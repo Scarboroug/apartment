@@ -60,7 +60,7 @@
 	                <h2>我的资料</h2>
 	            </div> -->
 					<!-- 检索  -->
-					<form action="payment/${msg}.action" method="post" name="Form" id="Form">
+					<form action="payment/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 						</table>
 						<table id="table_report" class="table table-striped table-bordered table-hover">
@@ -133,13 +133,13 @@
                 type:2,
                 area: ['500px', '300px'],
                 resize:false,
-                content:'${contextPath }/chargeStandard/goRoomTypeEdit.action?roomTypeId=' + id,
+                content:'${contextPath }/chargeStandard/goRoomTypeEdit.do?roomTypeId=' + id,
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
                 	body.find('#infoForm').submit();
                 	//layer.close(index);
-                	window.location.href = "${contextPath }/chargeStandard/roomTypeList.action";
+                	window.location.href = "${contextPath }/chargeStandard/roomTypeList.do";
                 },
                 btn2:function () {
                 }

@@ -26,12 +26,12 @@
         	<div class="sidebar">
             	<h2 class="sidebar-header"><p>功能导航</p></h2>
                 <ul class="nav">
-                	<li class="gongwen current"><div class="nav-header"><a href="${contextPath }/dataEntry/list.action" target="iframe1" class="clearfix"><span>水电用量</span><i class="icon"></i></a></div></li>
-                	<li class="nav-info"><div class="nav-header"><a href="${contextPath }/dataEntry/waterList.action" target="iframe1" class="clearfix"><span>用水量</span><i class="icon"></i></a></div></li>
-                	<li class="office"><div class="nav-header"><a href="${contextPath }/dataEntry/electricList.action" target="iframe1" class="clearfix"><span>用电量</span><i class="icon"></i></a></div></li>
+                	<li class="gongwen current"><div class="nav-header"><a href="${contextPath }/dataEntry/list.do" target="iframe1" class="clearfix"><span>水电用量</span><i class="icon"></i></a></div></li>
+                	<li class="nav-info"><div class="nav-header"><a href="${contextPath }/dataEntry/waterList.do" target="iframe1" class="clearfix"><span>用水量</span><i class="icon"></i></a></div></li>
+                	<li class="office"><div class="nav-header"><a href="${contextPath }/dataEntry/electricList.do" target="iframe1" class="clearfix"><span>用电量</span><i class="icon"></i></a></div></li>
                 </ul>
             </div>
-            <iframe src="${contextPath }/dataEntry/list.action" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
+            <iframe src="${contextPath }/dataEntry/list.do" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </div>
 </div>

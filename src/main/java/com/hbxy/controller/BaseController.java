@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.hbxy.util.PageData;
 import org.apache.log4j.Logger;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class  BaseAction {
+public class BaseController {
 
 	protected Logger logger = Logger.getLogger(this.getClass());
 

@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.hbxy.bean.Page;
 import com.hbxy.service.ChargeStandardService;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("chargeStandard")
-public class ChargeStandardAction extends BaseAction
+public class ChargeStandardController extends BaseController
 {
 	@Autowired
 	private ChargeStandardService chargeStandardService;

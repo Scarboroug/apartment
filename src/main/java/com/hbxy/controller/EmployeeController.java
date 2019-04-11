@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.hbxy.bean.Page;
@@ -9,7 +9,7 @@ import com.hbxy.service.RoomService;
 import com.hbxy.service.RoomTypeService;
 import com.hbxy.util.DateUtil;
 import com.hbxy.util.PageData;
-import com.hbxy.util.StringUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("employee")
-public class EmployeeAction extends BaseAction
+public class EmployeeController extends BaseController
 {
 	@Autowired
 	private EmployeeService employeeService;
@@ -151,7 +151,7 @@ public class EmployeeAction extends BaseAction
 		PageData pd = this.getPageData();
 		
 		String time = pd.getString("enterTime");
-		if (StringUtil.isNotEmpty(time))
+		if (StringUtils.isNotEmpty(time))
 		{
 			Date date = DateUtil.str2Date(time);
 			//初始化日历对象

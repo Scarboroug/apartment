@@ -33,7 +33,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<!-- 检索  -->
-					<form action="${msg}.action" method="post" name="Form" id="Form">
+					<form action="${msg}.do" method="post" name="Form" id="Form">
 						<table>
 							<tr>
 								<td>
@@ -154,7 +154,7 @@
 		}
 		function save(roomId)
 		{
-			var url = "${contextPath}/dataEntry/save.action";
+			var url = "${contextPath}/dataEntry/save.do";
 			//var reqData = ("#Form").serialize();
 			var water = $("#water" + roomId).val();
 			var electric = $("#electric" + roomId).val();
@@ -166,7 +166,7 @@
 				if(data = 'SUCCESS')
 				{
 					parent.layer.alert("录入成功", {icon: 1});
-					window.location.href = "${contextPath }/dataEntry/list.action?time=" + time;
+					window.location.href = "${contextPath }/dataEntry/list.do?time=" + time;
 				}
 				else
 				{

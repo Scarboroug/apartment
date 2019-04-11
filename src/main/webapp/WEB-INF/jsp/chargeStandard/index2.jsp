@@ -57,7 +57,7 @@
 	                <h2>我的资料</h2>
 	            </div> -->
 					<!-- 检索  -->
-					<form action="chargeStandard/${msg}.action" method="post" name="Form" id="Form">
+					<form action="chargeStandard/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 						</table>
 						<table id="table_report" class="table table-striped table-bordered table-hover">
@@ -130,13 +130,13 @@
                 type:2,
                 area: ['500px', '300px'],
                 resize:false,
-                content:'${contextPath }/chargeStandard/goEdit.action?csId=' + id,
+                content:'${contextPath }/chargeStandard/goEdit.do?csId=' + id,
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
                 	body.find('#infoForm').submit();
                 	layer.close(index);
-                	window.location.href = "${contextPath }/chargeStandard/list.action";
+                	window.location.href = "${contextPath }/chargeStandard/list.do";
                 },
                 btn2:function () {
                 }

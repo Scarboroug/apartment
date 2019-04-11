@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.hbxy.bean.Page;
 import com.hbxy.common.Constant;
@@ -8,7 +8,7 @@ import com.hbxy.service.PaymentService;
 import com.hbxy.service.RoomService;
 import com.hbxy.util.DateUtil;
 import com.hbxy.util.PageData;
-import com.hbxy.util.StringUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("dataEntry")
-public class DataEntryAction extends BaseAction
+public class DataEntryController extends BaseController
 {
 	@Autowired
 	private DataEntryService dataEntryService;
@@ -57,12 +57,9 @@ public class DataEntryAction extends BaseAction
 	public ModelAndView list(Page page)
 	{
 		PageData pd = this.getPageData();
-		if(StringUtil.isEmpty(pd.getString("time")))
+		if(StringUtils.isEmpty(pd.getString("time")))
 		{
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(new Date());
-			calendar.add(Calendar.MONTH, -1);
-			pd.put("time", DateUtil.date2Str(calendar.getTime(), "yyyy-MM"));
+			pd.put("time", DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
 		}
 		page.setPd(pd);
 		List<PageData> list = new ArrayList<PageData>();
@@ -93,9 +90,9 @@ public class DataEntryAction extends BaseAction
 	public ModelAndView waterList(Page page)
 	{
 		PageData pd = this.getPageData();
-		if(StringUtil.isEmpty(pd.getString("time")))
+		if(StringUtils.isEmpty(pd.getString("time")))
 		{
-			pd.put("time", DateUtil.date2Str(new Date(), "yyyy-MM"));
+			pd.put("time", DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
 		}
 		page.setPd(pd);
 		List<PageData> list = new ArrayList<>();
@@ -125,9 +122,9 @@ public class DataEntryAction extends BaseAction
 	public ModelAndView electricList(Page page)
 	{
 		PageData pd = this.getPageData();
-		if(StringUtil.isEmpty(pd.getString("time")))
+		if(StringUtils.isEmpty(pd.getString("time")))
 		{
-			pd.put("time", DateUtil.date2Str(new Date(), "yyyy-MM"));
+			pd.put("time", DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
 		}
 		page.setPd(pd);
 		List<PageData> list = new ArrayList<>();
@@ -157,7 +154,7 @@ public class DataEntryAction extends BaseAction
 	public Object save()
 	{
 		PageData pd = this.getPageData();
-		if(StringUtil.isEmpty(pd.getString("time")))
+		if(StringUtils.isEmpty(pd.getString("time")))
 		{
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date());
@@ -186,7 +183,7 @@ public class DataEntryAction extends BaseAction
 					Calendar enterCalendar = Calendar.getInstance();
 					enterCalendar.setTime(DateUtil.str2Date(enterTime));
 					long enterDays = (enterCalendar.getTimeInMillis() - calendar.getTimeInMillis()) / (1000 * 60 * 60 * 24);
-					if(!StringUtil.isEmpty(leaveTime))
+					if(!StringUtils.isEmpty(leaveTime))
 					{
 						//当月退租者居住时长
 						Calendar leaveCalendar = Calendar.getInstance();

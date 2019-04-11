@@ -20,11 +20,11 @@
         	<div class="sidebar">
             	<h2 class="sidebar-header"><p>功能导航</p></h2>
                 <ul class="nav">
-                    <li class="gongwen current"><div class="nav-header"><a href="${contextPath }/payment/list.action" target="iframe1" class="clearfix"><span>房租缴费</span><i class="icon"></i></a></div></li>
-                	<li class="office"><div class="nav-header"><a href="${contextPath }/payment/weList.action" target="iframe1" class="clearfix"><span>水电缴费</span><i class="icon"></i></a></div></li>
+                    <li class="gongwen current"><div class="nav-header"><a href="${contextPath }/payment/list.do" target="iframe1" class="clearfix"><span>房租缴费</span><i class="icon"></i></a></div></li>
+                	<li class="office"><div class="nav-header"><a href="${contextPath }/payment/weList.do" target="iframe1" class="clearfix"><span>水电缴费</span><i class="icon"></i></a></div></li>
                 </ul>
             </div>
-            <iframe src="${contextPath }/payment/list.action" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
+            <iframe src="${contextPath }/payment/list.do" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </div>
 </div>

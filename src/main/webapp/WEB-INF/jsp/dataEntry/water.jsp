@@ -42,7 +42,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<!-- 检索  -->
-					<form action="dataEntry/${msg}.action" method="post" name="Form" id="Form">
+					<form action="dataEntry/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 							<tr>
 								<td>
@@ -164,7 +164,7 @@
                 type:2,
                 area: ['500px', '250px'],
                 resize:false,
-                content:'${contextPath }/dataEntry/goWaterEdit.action?weId=' + id,
+                content:'${contextPath }/dataEntry/goWaterEdit.do?weId=' + id,
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
@@ -178,7 +178,7 @@
                 	{
 	                	body.find('#infoForm').submit();
 	                	parent.layer.alert("修改成功", {icon: 1});
-	                	window.location.href = "${contextPath }/dataEntry/waterList.action";
+	                	window.location.href = "${contextPath }/dataEntry/waterList.do";
                 	}
                 },
                 btn2:function () {

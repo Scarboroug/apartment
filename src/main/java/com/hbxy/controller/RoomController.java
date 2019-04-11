@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.hbxy.bean.Page;
 import com.hbxy.service.RoomService;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("room")
-public class RoomAction extends BaseAction
+public class RoomController extends BaseController
 {
 	@Autowired
 	private RoomService roomservice;

@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.hbxy.bean.Page;
 import com.hbxy.common.Constant;
@@ -7,7 +7,7 @@ import com.hbxy.service.EmployeeService;
 import com.hbxy.service.PaymentService;
 import com.hbxy.util.DateUtil;
 import com.hbxy.util.PageData;
-import com.hbxy.util.StringUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("payment")
-public class PaymentAction extends BaseAction
+public class PaymentController extends BaseController
 {
 	@Autowired
 	private PaymentService paymentService;
@@ -56,7 +56,7 @@ public class PaymentAction extends BaseAction
 	{
 		PageData pd = this.getPageData();
 //		String time = pd.getString("time");
-//		if(StringUtil.isEmpty(time))
+//		if(StringUtils.isEmpty(time))
 //		{
 //			time = DateUtil.date2Str(new Date());
 //			pd.put("time", time);
@@ -90,7 +90,7 @@ public class PaymentAction extends BaseAction
 	public ModelAndView weList(Page page)
 	{
 		PageData pd = this.getPageData();
-		if(StringUtil.isEmpty(pd.getString("time")))
+		if(StringUtils.isEmpty(pd.getString("time")))
 		{
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date());

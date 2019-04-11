@@ -58,7 +58,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<!-- 检索  -->
-					<form action="account/${msg}.action" method="post" name="Form" id="Form">
+					<form action="account/${msg}.do" method="post" name="Form" id="Form">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
@@ -157,7 +157,7 @@
                 type:2,
                 area: ['500px', '350px'],
                 resize:false,
-                content:'${contextPath }/account/goSave.action',
+                content:'${contextPath }/account/goSave.do',
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
@@ -167,7 +167,7 @@
                 	
                 	if(!isEmpty(loginName))
                 	{
-                		$.post("${contextPath}/account/checkUser.action", {loginName: loginName}, function(data){
+                		$.post("${contextPath}/account/checkUser.do", {loginName: loginName}, function(data){
                 			// console.log(data);
                 			if(data != 'SUCCESS')
                 			{
@@ -193,7 +193,7 @@
                         	{
         	                	body.find('#infoForm').submit();
         	                	parent.layer.alert("新增成功", {icon: 1});
-        	                	window.location.href = "${contextPath }/account/list.action";
+        	                	window.location.href = "${contextPath }/account/list.do";
                        		    /* layer.tips('请确保密码一致', body.find("input[name='password1']"), {
                        		        tips: [1, '#3595CC'],
                        		        time: 4000
@@ -216,7 +216,7 @@
                 type:2,
                 area: ['500px', '350px'],
                 resize:false,
-                content:'${contextPath }/account/goEdit.action?loginId=' + id,
+                content:'${contextPath }/account/goEdit.do?loginId=' + id,
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
@@ -257,7 +257,7 @@
                 	{
 	                	body.find('#infoForm').submit();
 	                	parent.layer.alert("修改成功", {icon: 1});
-	                	window.location.href = "${contextPath }/account/list.action";
+	                	window.location.href = "${contextPath }/account/list.do";
                 	}
                 },
                 btn2:function () {
@@ -282,7 +282,7 @@
 				}
 				else
 				{
-	                $.post("${contextPath}/account/removeAll.action", {ids: str}, function (data) {  
+	                $.post("${contextPath}/account/removeAll.do", {ids: str}, function (data) {
 	                	if(data == 'SUCCESS')
 	                	{
 	                		data = '删除成功';
@@ -298,7 +298,7 @@
 	                        function (index, item) {  
 	                    		layer.close(index);  
 	                           // location.reload();  
-	                    		window.location.href = "${contextPath }/account/list.action";
+	                    		window.location.href = "${contextPath }/account/list.do";
 	                        });  
 	                }, "text");  
 				}

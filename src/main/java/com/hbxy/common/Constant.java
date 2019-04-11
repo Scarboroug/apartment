@@ -22,6 +22,6 @@ public class Constant {
 	// 分页条数配置路径
 	public static final String PAGE = "PAGE.txt";
 	//登录路径
-	public static final String LOGIN = "/login/toLogin.action"; 
+	public static final String LOGIN = "/login/toLogin.do";
 	
 }

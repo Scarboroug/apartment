@@ -39,7 +39,7 @@
             <div class="subfiled-content">
                 <div class="tab-content">
                     <div class="tab-content-item">
-                        <form id="infoForm" method="post" action="${msg }.action">
+                        <form id="infoForm" method="post" action="${msg }.do">
                             <div class="kv-item clearfix">
                                 <label>标准名称：</label>
                                 <div class="kv-item-content">

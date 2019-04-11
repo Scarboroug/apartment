@@ -60,7 +60,7 @@
 	                <h2>我的资料</h2>
 	            </div> -->
 					<!-- 检索  -->
-					<form action="room/${msg}.action" method="post" name="Form" id="Form">
+					<form action="room/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 							<tr>
 								<td>
@@ -181,13 +181,13 @@
                 type:2,
                 area: ['500px', '300px'],
                 resize:false,
-                content:'${contextPath }/room/goSave.action',
+                content:'${contextPath }/room/goSave.do',
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
                 	body.find('#infoForm').submit();
                 	layer.close(index);
-                	window.location.href = "${contextPath }/room/list.action";
+                	window.location.href = "${contextPath }/room/list.do";
                 },
                 btn2:function () {
                 }

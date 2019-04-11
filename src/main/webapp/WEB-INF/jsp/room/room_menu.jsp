@@ -22,10 +22,10 @@
         	<div class="sidebar">
             	<h2 class="sidebar-header"><p>功能导航</p></h2>
                 <ul class="nav">
-                	<li class="office current"><div class="nav-header"><a href="${contextPath }/room/list.action" target="iframe1" class="clearfix"><span>房间管理</span><i class="icon"></i></a></div></li>
+                	<li class="office current"><div class="nav-header"><a href="${contextPath }/room/list.do" target="iframe1" class="clearfix"><span>房间管理</span><i class="icon"></i></a></div></li>
                 </ul>
             </div>
-            <iframe src="${contextPath }/room/list.action" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
+            <iframe src="${contextPath }/room/list.do" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.hbxy.bean.LoginBean;
 import com.hbxy.common.Constant;
@@ -16,9 +16,9 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("login")
-public class LoginAction extends BaseAction
+public class LoginController extends BaseController
 {
-	Logger logger = Logger.getLogger(LoginAction.class);
+	Logger logger = Logger.getLogger(LoginController.class);
 	@Autowired
 	private LoginService loginService;
 	

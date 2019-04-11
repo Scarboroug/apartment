@@ -23,14 +23,14 @@
         	<div class="sidebar">
             	<h2 class="sidebar-header"><p>功能导航</p></h2>
                 <ul class="nav">
-                	<li class="office"><div class="nav-header"><a href="${contextPath }/employee/toIndex.action" target="iframe1" class="clearfix"><span>入住办理</span><i class="icon"></i></a></div></li>
-                    <li class="gongwen"><div class="nav-header"><a href="${contextPath }/employee/list.action" target="iframe1" class="clearfix"><span>退房办理</span><i class="icon"></i></a></div></li>
+                	<li class="office"><div class="nav-header"><a href="${contextPath }/employee/toIndex.do" target="iframe1" class="clearfix"><span>入住办理</span><i class="icon"></i></a></div></li>
+                    <li class="gongwen"><div class="nav-header"><a href="${contextPath }/employee/list.do" target="iframe1" class="clearfix"><span>退房办理</span><i class="icon"></i></a></div></li>
                     <li class="nav-info">
-                    	<div class="nav-header"><a href="${contextPath }/employee/empList.action" class="clearfix"><span>人员信息</span><i class="icon"></i></a></div>
+                    	<div class="nav-header"><a href="${contextPath }/employee/empList.do" class="clearfix"><span>人员信息</span><i class="icon"></i></a></div>
                     </li>
                 </ul>
             </div>
-            <iframe src="${contextPath }/employee/toDefault.action" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
+            <iframe src="${contextPath }/employee/toDefault.do" name="iframe1" width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </div>
 </div>

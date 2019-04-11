@@ -61,7 +61,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<!-- 检索  -->
-					<form action="employee/${msg}.action" method="post" name="Form" id="Form">
+					<form action="employee/${msg}.do" method="post" name="Form" id="Form">
 						<table>
 							<tr>
 								<td>
@@ -187,7 +187,7 @@
 				parent.layer.alert("无须支付或退款", {icon: 1});
 			} */
 			
-			var url = "${contextPath}/employee/quitHousing.action";
+			var url = "${contextPath}/employee/quitHousing.do";
 			var reqData = "empId=" + empId;
 			$.post(url, reqData, function(data){
 				
@@ -195,7 +195,7 @@
 				{
 					parent.layer.alert("退房成功！", {icon: 1});
 					//alert("退房成功！");
-					window.location.href = "${contextPath }/employee/list.action";
+					window.location.href = "${contextPath }/employee/list.do";
 				}
 			}, "text");
 		}

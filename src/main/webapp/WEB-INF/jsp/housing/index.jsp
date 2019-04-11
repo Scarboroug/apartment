@@ -134,7 +134,7 @@
 	function findRoom()
 	{
 		var roomTypeId = $("#roomTypeId").val();
-		var url = "${contextPath}/employee/findRoom.action";	
+		var url = "${contextPath}/employee/findRoom.do";
 		var reqData = "roomTypeId=" + roomTypeId + "&gender=" + $("#sex input[name='gender']:checked").val();
 		if($(roomTypeId != null && roomTypeId != ''))
 		{
@@ -283,18 +283,18 @@
 		    return;
 		}
 		
-		var url = "${contextPath}/employee/saveEmployee.action";
+		var url = "${contextPath}/employee/saveEmployee.do";
 		var reqData = $("#infoForm").serialize();
 		$.post(url, reqData, function(data){
 			if("SUCCESS" == data)
 			{
 				top.layer.alert("添加成功", {icon: 1});
-				window.location.href = "${contextPath}/employee/toIndex.action";			
+				window.location.href = "${contextPath}/employee/toIndex.do";
 			}
 			else
 			{
 				top.layer.alert("添加失败", {icon: 2});
-				window.location.href = "${contextPath}/employee/toIndex.action";
+				window.location.href = "${contextPath}/employee/toIndex.do";
 			}
 		}, "text");
 	}

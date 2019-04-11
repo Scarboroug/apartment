@@ -38,28 +38,28 @@
         	<div class="top-light"></div>
             <h1 class="logo"></h1>
             <ul class="main-nav clearfix">
-                <li><a href="${contextPath }/employee/toMenuIndex.action" target="iframe">住宿办理</a></li>
-                <li><a href="${contextPath }/payment/toMenuIndex.action" target="iframe">缴费管理</a></li>
-                <li><a href="${contextPath }/dataEntry/toMenuIndex.action" target="iframe">数据录入</a></li>
-                <li><a href="${contextPath }/room/toMenuIndex.action" target="iframe">房间管理</a></li>
+                <li><a href="${contextPath }/employee/toMenuIndex.do" target="iframe">住宿办理</a></li>
+                <li><a href="${contextPath }/payment/toMenuIndex.do" target="iframe">缴费管理</a></li>
+                <li><a href="${contextPath }/dataEntry/toMenuIndex.do" target="iframe">数据录入</a></li>
+                <li><a href="${contextPath }/room/toMenuIndex.do" target="iframe">房间管理</a></li>
                 <c:if test="${sessionScope.SESSION_USER_ROLE == 1 }">
-	                <li><a href="${contextPath }/account/toMenuIndex.action" target="iframe">账户管理</a></li>
+	                <li><a href="${contextPath }/account/toMenuIndex.do" target="iframe">账户管理</a></li>
                 </c:if>
                 <c:if test="${sessionScope.SESSION_USER_ROLE == 1 }">
-	                <li><a href="${contextPath }/chargeStandard/toMenuIndex.action" target="iframe">收费标准管理</a></li>
+	                <li><a href="${contextPath }/chargeStandard/toMenuIndex.do" target="iframe">收费标准管理</a></li>
                 </c:if>
             </ul>
             <div class="toolbar">
                 <div class="login-info tool clearfix">
                     <div class="welcome clearfix"><span>欢迎您&nbsp;</span><span class="user-name">${sessionScope.USER_NAME }</span></div>
-                   	<a href="${contextPath }/employee/toMenuIndex.action" target="iframe" class="quit-btn exit">首页</a>
-                   	<a href="logout.action?userId=${sessionScope.USER_ID }" class="quit-btn exit">退出</a>
+                   	<a href="${contextPath }/employee/toMenuIndex.do" target="iframe" class="quit-btn exit">首页</a>
+                   	<a href="logout.do?userId=${sessionScope.USER_ID }" class="quit-btn exit">退出</a>
             	</div>          
         	</div>
     	</div>
     </div>
     <div id="bd">
-     		<iframe src="${contextPath }/employee/toMenuIndex.action" name="iframe" width="100%" height="100%" frameborder="0"></iframe>
+     		<iframe src="${contextPath }/employee/toMenuIndex.do" name="iframe" width="100%" height="100%" frameborder="0"></iframe>
  	</div>
 </div>
 

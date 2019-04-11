@@ -1,4 +1,4 @@
-package com.hbxy.action;
+package com.hbxy.controller;
 
 import com.hbxy.bean.Page;
 import com.hbxy.common.Constant;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("account")
-public class AccountAction extends BaseAction
+public class AccountController extends BaseController
 {
 	@Autowired
 	private AccountService accountService;
