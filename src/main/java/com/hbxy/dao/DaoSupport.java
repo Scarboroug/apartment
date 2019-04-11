@@ -13,7 +13,7 @@ import java.util.List;
  * 通用DAO
  */
 @Repository
-public class DaoSupport implements DAO {
+public class DaoSupport implements Dao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;

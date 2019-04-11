@@ -1,6 +1,6 @@
 package com.hbxy.dao;
 
-public interface DAO {
+public interface Dao {
 
 	/**
 	 * 保存对象
