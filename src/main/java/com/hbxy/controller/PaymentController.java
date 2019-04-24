@@ -177,7 +177,6 @@ public class PaymentController extends BaseController
 				wPd = chargeStandardService.findById(csPd);
 				if(wPd != null)
 				{
-//					waterStandard = Double.parseDouble(wPd.getString("csPrice"));
 					waterStandard = (double) wPd.get("csPrice");
 				}
 				
@@ -185,7 +184,6 @@ public class PaymentController extends BaseController
 				ePd = chargeStandardService.findById(csPd);
 				if(ePd != null)
 				{
-//					electricStandard = Double.parseDouble(ePd.getString("csPrice"));
 					electricStandard = (double) ePd.get("csPrice");
 				}
 				price = (water * waterStandard + electric * electricStandard) / count * day;
@@ -212,11 +210,6 @@ public class PaymentController extends BaseController
 		try
 		{
 			pd = employeeService.findById(pd);
-//			String deleteFlag = pd.get("deleteFlag").toString();
-//			if(!"1".equals(deleteFlag))
-//			{
-//				employeeService.deleteById(pd);
-//			}
 			
 			String wePayTime = pd.getString("wePayTime");
 			Calendar weCalendar = Calendar.getInstance();

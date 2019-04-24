@@ -161,18 +161,29 @@
 			var time = $("#time").val();
 			var roomNumber = $("#roomNumber").val();
 			var reqData = 'roomId=' + roomId + '&water=' + water + "&electric=" + electric + "&time=" + time + "&roomNumber=" + roomNumber;
-			$.post(url, reqData, function(data){
-				
-				if(data = 'SUCCESS')
-				{
-					parent.layer.alert("录入成功", {icon: 1});
-					window.location.href = "${contextPath }/dataEntry/list.do?time=" + time;
+			parent.layer.open({
+				content: '是否录入？'
+				,btn: ['确定', '返回']
+				,yes: function(index, layero){
+					$.post(url, reqData, function(data){
+						if(data = 'SUCCESS')
+						{
+							parent.layer.alert("录入成功", {icon: 1});
+							window.location.href = "${contextPath }/dataEntry/list.do?time=" + time;
+						}
+						else
+						{
+							parent.layer.alert("录入失败", {icon: 1});
+						}
+					}, "text");
 				}
-				else
-				{
-					parent.layer.alert("录入失败", {icon: 1});
+				,btn2: function(index, layero){
+					layer.close(index);
 				}
-			}, "text");
+				,cancel: function(){
+
+				}
+			});
 		}
 	</script>
 </body>
