@@ -17,7 +17,7 @@ public class ChargeStandardTest
 	@Test
 	public void findByIdTest()
 	{
-		chargeStandardDao.findById(2);
+		chargeStandardDao.findById(3);
 	}
 
 	@Test

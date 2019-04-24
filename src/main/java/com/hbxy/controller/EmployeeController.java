@@ -95,8 +95,7 @@ public class EmployeeController extends BaseController
 				String roomTypeId = roomService.findById(pageData).get("roomTypeId").toString();
 				if("1".equals(roomTypeId))
 				{
-					pageData.put("csId", "6");
-					
+					pageData.put("csId", "8");
 				}
 				else if("2".equals(roomTypeId))
 				{
@@ -112,14 +111,13 @@ public class EmployeeController extends BaseController
 				}
 				else if("5".equals(roomTypeId))
 				{
-					pageData.put("csId", "10");
+					pageData.put("csId", "6");
 				}
 				
 				double price  = (double) chargeStandardService.findById(pageData).get("csPrice");
 
 				money = days * price;
-				
-				pageData.put("csId", "5");
+
 				money = (double) chargeStandardService.findById(pageData).get("csPrice") - money;
 				
 				list.get(i).put("price", money);

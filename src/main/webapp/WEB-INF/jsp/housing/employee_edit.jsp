@@ -51,11 +51,11 @@
                                 <label>性别：</label>
                                 <div class="kv-item-content" id="sex">
                                     <span class="choose">
-                                        <input type="radio" name="gender" value="1" ${pd.gender == 1 ? 'checked' : ''} >
+                                        <input type="radio" name="gender" value="1" ${pd.gender == 1 ? 'checked' : ''} disabled/>
                                         <span class="text">男</span>
                                     </span>
                                     <span class="choose">
-                                        <input type="radio" name="gender" value="2" ${pd.gender == 2 ? 'checked' : ''} >
+                                        <input type="radio" name="gender" value="2" ${pd.gender == 2 ? 'checked' : ''} disabled/>
                                         <span class="text">女</span>
                                     </span>
                                 </div>
