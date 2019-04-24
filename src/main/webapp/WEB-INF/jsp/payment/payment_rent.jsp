@@ -118,7 +118,7 @@
 												<td class='center' style="width: 150px;">${var.nextPayTime}</td>
 												<td class='center' style="width: 150px;">${var.price}</td>
 												<td style="width:200px;" class="center">
-													<a href="javascript:;" onclick="payRental(${var.empId});">缴费</a> 
+													<a href="javascript:;" onclick="payRental(${var.empId});">缴费</a>
 												</td>
 											</tr>
 										</c:forEach>
@@ -159,14 +159,28 @@
 			
 			var url = "${contextPath}/payment/payRental.do";
 			var reqData = "empId=" + empId;
-			$.post(url, reqData, function(data){
-				
-				if(data = 'SUCCESS')
-				{
-					layer.alert("缴费成功！", {icon: 1});
-					window.location.href = "${contextPath }/payment/list.do";
+
+			layer.open({
+				content: '是否缴费？'
+				,btn: ['确定', '返回']
+				,yes: function(index, layero){
+						$.post(url, reqData, function(data){
+							if(data = 'SUCCESS')
+							{
+								layer.alert("缴费成功！", {icon: 1,closeBtn: 0}, function () {
+									window.location.href = "${contextPath }/payment/list.do";
+								});
+							}
+						}, "text");
 				}
-			}, "text");
+				,btn2: function(index, layero){
+					layer.close(index);
+				}
+				,cancel: function(){
+
+				}
+			});
+
 		}
 	</script>
 </body>

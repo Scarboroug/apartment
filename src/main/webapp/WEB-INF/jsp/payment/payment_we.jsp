@@ -16,8 +16,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<script type="text/javascript" src="${contextPath }/static/js/jquery-3.3.1.min.js" ></script>
 	<!-- 导入layer插件样式 -->
-	<link type="text/css" rel="stylesheet" href="${contextPath }/js/layer/mobile/need/layer.css"/>
-	<script type="text/javascript" src="${contextPath }/js/layer/layer.js" ></script>
+	<%--<link type="text/css" rel="stylesheet" href="${contextPath }/js/layer/mobile/need/layer.css"/>--%>
+	<%--<script type="text/javascript" src="${contextPath }/js/layer/layer.js" ></script>--%>
+	<link type="text/css" rel="stylesheet" href="${contextPath }/layui/css/layui.css"/>
+	<script type="text/javascript" src="${contextPath }/layui/layui.js" ></script>
 	<!-- basic styles -->
 	<link href="static/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="static/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -160,20 +162,37 @@
 			var time = $("#time").val();
 			var roomNumber = $("#roomNumber").val();
 			var reqData = 'empId=' + empId;
-			$.post(url, reqData, function(data){
-				
-				if(data = 'SUCCESS')
-				{
-					layer.alert("支付成功", {icon: 1});
-					//window.location.href = "${contextPath }/payment/paymentWE.do";
-					$("#Form").submit();
+			layer.open({
+				content: '是否缴费？'
+				,btn: ['确定', '返回']
+				,yes: function(index, layero){
+					$.post(url, reqData, function(data){
+
+						if(data = 'SUCCESS')
+						{
+							layer.alert("支付成功！", {icon: 1,closeBtn: 0}, function () {
+								$("#Form").submit();
+							});
+							<%--layer.alert("支付成功", {icon: 1});--%>
+							<%--window.location.href = "${contextPath }/payment/paymentWE.do";--%>
+							<%--$("#Form").submit();--%>
+						}
+						else
+						{
+							layer.alert("支付失败，请重新尝试！！", {icon: 2,closeBtn: 0}, function () {
+								$("#Form").submit();
+							});
+						}
+					}, "text");
 				}
-				else
-				{
-					layer.alert("支付失败，请重新尝试！", {icon: 2});
-					$("#Form").submit();
+				,btn2: function(index, layero){
+					layer.close(index);
 				}
-			}, "text");
+				,cancel: function(){
+
+				}
+			});
+
 		}
 	</script>
 </body>
