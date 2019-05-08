@@ -5,8 +5,8 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface ChargeStandardDao
-{
+public interface ChargeStandardDao {
+
 	/**
 	 * 根据id查询收费标准信息
 	 * @param id
@@ -25,4 +25,5 @@ public interface ChargeStandardDao
 	 * @param chargeStandardBean
 	 */
 	void updateById(ChargeStandardBean chargeStandardBean);
+
 }

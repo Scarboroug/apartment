@@ -1,8 +1,8 @@
 package com.hbxy.bean;
 
 
-public class RoomBean
-{
+public class RoomBean {
+
 	private Integer roomId;
 	private Integer roomTypeId;
 	private RoomTypeBean roomType;
@@ -82,4 +82,5 @@ public class RoomBean
 	{
 		this.total = total;
 	}
+
 }

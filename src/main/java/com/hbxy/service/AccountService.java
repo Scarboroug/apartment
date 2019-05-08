@@ -5,8 +5,7 @@ import com.hbxy.util.PageData;
 
 import java.util.List;
 
-public interface AccountService
-{
+public interface AccountService {
 
 	List<PageData> findlistPage(Page page) throws Exception;
 	
@@ -19,4 +18,5 @@ public interface AccountService
 	void removeAll(int[] ids) throws Exception;
 
 	List<PageData> findAllLogin(PageData pd) throws Exception;
+
 }

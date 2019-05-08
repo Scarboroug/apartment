@@ -1,8 +1,5 @@
 package com.hbxy.common;
 
-/**
- *
- */
 public class Constant {
 	
 	/**

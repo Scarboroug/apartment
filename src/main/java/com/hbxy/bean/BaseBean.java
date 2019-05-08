@@ -3,8 +3,8 @@ package com.hbxy.bean;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-public class BaseBean
-{
+public class BaseBean {
+
 	private Integer page;
 	private Integer pageSize;
 	private Integer fromIndex;
@@ -44,4 +44,5 @@ public class BaseBean
 	{
 		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
 	}
+
 }

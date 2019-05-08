@@ -16,26 +16,22 @@ public class PaymentServiceImpl implements PaymentService
 	private DaoSupport dao;
 
 	@Override
-	public List<PageData> listPage(PageData pd) throws Exception
-	{
+	public List<PageData> listPage(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("PaymentMapper.listPage", pd);
 	}
 
 	@Override
-	public List<PageData> listPage(Page page) throws Exception
-	{
+	public List<PageData> listPage(Page page) throws Exception {
 		return (List<PageData>) dao.findForList("PaymentMapper.listPage", page);
 	}
 
 	@Override
-	public List<PageData> findEmpByRoomId(PageData pd) throws Exception
-	{
+	public List<PageData> findEmpByRoomId(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("PaymentMapper.findEmpByRoomId", pd);
 	}
 
 	@Override
-	public List<PageData> findRentlistPage(Page page) throws Exception
-	{
+	public List<PageData> findRentlistPage(Page page) throws Exception {
 		return (List<PageData>) dao.findForList("PaymentMapper.findRentlistPage", page);
 	}
 	

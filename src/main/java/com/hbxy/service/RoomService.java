@@ -5,8 +5,7 @@ import com.hbxy.util.PageData;
 
 import java.util.List;
 
-public interface RoomService
-{
+public interface RoomService {
 
 	List<PageData> findByRoomType(PageData pd) throws Exception;
 	
@@ -26,4 +25,7 @@ public interface RoomService
 	List<PageData> findAlllistPage(Page page) throws Exception;
 	
 	void insertRoom(PageData pd) throws Exception;
+
+	void removeAll(int[] ids) throws Exception;
+
 }

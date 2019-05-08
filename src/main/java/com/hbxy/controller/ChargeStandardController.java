@@ -13,8 +13,8 @@ import java.util.List;
 
 @Controller
 @RequestMapping("chargeStandard")
-public class ChargeStandardController extends BaseController
-{
+public class ChargeStandardController extends BaseController {
+
 	@Autowired
 	private ChargeStandardService chargeStandardService;
 	
@@ -43,17 +43,14 @@ public class ChargeStandardController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("list")
-	public ModelAndView list(Page page)
-	{
+	public ModelAndView list(Page page) {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = this.getPageData();
 		
 		List<PageData> list = null;
-		try
-		{
+		try {
 			list = chargeStandardService.findAll(page);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -69,14 +66,11 @@ public class ChargeStandardController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("goEdit")
-	public ModelAndView goEdit()
-	{
+	public ModelAndView goEdit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd = chargeStandardService.findById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -92,15 +86,11 @@ public class ChargeStandardController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("edit")
-	public ModelAndView edit()
-	{
+	public ModelAndView edit() {
 		PageData pd = this.getPageData();
-		
-		try
-		{
+		try {
 			chargeStandardService.updateById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		ModelAndView mv = this.getModelAndView();
@@ -115,15 +105,11 @@ public class ChargeStandardController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("roomTypeList")
-	public ModelAndView roomTypeList(Page page)
-	{
+	public ModelAndView roomTypeList(Page page) {
 		List<PageData> list = null;
-		
-		try
-		{
+		try {
 			list = roomTypeService.findAlllistPage(page);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -139,14 +125,11 @@ public class ChargeStandardController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("goRoomTypeEdit")
-	public ModelAndView goRoomTypeEdit()
-	{
+	public ModelAndView goRoomTypeEdit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd = roomTypeService.findById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -162,15 +145,11 @@ public class ChargeStandardController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("roomTypeEdit")
-	public ModelAndView roomTypeEdit()
-	{
+	public ModelAndView roomTypeEdit() {
 		PageData pd = this.getPageData();
-		
-		try
-		{
+		try {
 			roomTypeService.updateRoomType(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		ModelAndView mv = this.getModelAndView();
@@ -178,4 +157,5 @@ public class ChargeStandardController extends BaseController
 		mv.setViewName("chargeStandard/cs_roomType");
 		return mv;
 	}
+
 }

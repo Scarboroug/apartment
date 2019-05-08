@@ -193,7 +193,45 @@
                 }
             })
 		}
-		
+		//批量操作
+		function removeAll(msg){
+			layer.confirm(msg, { title: "删除确认" }, function (index) {
+				var str = '';
+				for(var i=0;i < document.getElementsByName('ids').length;i++)
+				{
+					if(document.getElementsByName('ids')[i].checked){
+						if(str=='') str += document.getElementsByName('ids')[i].value;
+						else str += ',' + document.getElementsByName('ids')[i].value;
+					}
+				}
+				if(str == '')
+				{
+					layer.alert("您没有选择任何内容", {icon: 2});
+				}
+				else
+				{
+					$.post("${contextPath}/room/removeAll.do", {ids: str}, function (data) {
+						if(data == 'SUCCESS')
+						{
+							data = '删除成功';
+						}
+						else
+						{
+							data = '删除失败';
+						}
+						layer.alert(data, {
+									title: "删除操作",
+									btn: ['确定']
+								},
+								function (index, item) {
+									layer.close(index);
+									// location.reload();
+									window.location.href = "${contextPath }/room/list.do";
+								});
+					}, "text");
+				}
+			});
+		}
 	</script>
 </body>
 </html>

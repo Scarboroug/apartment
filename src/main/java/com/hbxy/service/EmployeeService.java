@@ -5,8 +5,7 @@ import com.hbxy.util.PageData;
 
 import java.util.List;
 
-public interface EmployeeService
-{
+public interface EmployeeService {
 
 	void updateEmpById(PageData pd) throws Exception;
 	
@@ -21,4 +20,5 @@ public interface EmployeeService
 	void deleteById(PageData pd) throws Exception;
 	
 	void updateWEPayTimeById(PageData pd) throws Exception;
+
 }

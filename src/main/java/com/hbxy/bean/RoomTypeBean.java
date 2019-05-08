@@ -1,7 +1,7 @@
 package com.hbxy.bean;
 
-public class RoomTypeBean extends BaseBean
-{
+public class RoomTypeBean extends BaseBean {
+
 	private Integer roomTypeId;
 	private String roomType;
 	private Double rental;
@@ -50,4 +50,5 @@ public class RoomTypeBean extends BaseBean
 	{
 		this.rental = rental;
 	}
+
 }

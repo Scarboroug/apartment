@@ -1,7 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "mybatis-3-mapper.dtd" >
   
 <mapper namespace="com.hbxy.dao.LoginDao">
-
 	<sql id="selectParams">
 		login_id, login_name, password, role
 	</sql>

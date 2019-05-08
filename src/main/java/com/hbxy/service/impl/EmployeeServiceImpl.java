@@ -22,45 +22,39 @@ public class EmployeeServiceImpl implements EmployeeService {
     private DaoSupport dao;
 
     @Override
-    public void updateEmpById(PageData pd) throws Exception
-    {
+    public void updateEmpById(PageData pd) throws Exception {
         dao.update("EmployeeMapper.updateEmpById", pd);
     }
 
     @Override
-    public void save(PageData pd) throws Exception
-    {
+    public void save(PageData pd) throws Exception {
         dao.save("EmployeeMapper.insertEmployee", pd);
         dao.update("RoomMapper.updateTotalById", pd);
     }
 
     @Override
-    public List<PageData> datalistPage(Page page) throws Exception
-    {
+    public List<PageData> datalistPage(Page page) throws Exception {
         return (List<PageData>) dao.findForList("EmployeeMapper.datalistPage", page);
     }
 
     @Override
-    public List<PageData> findAlllistPage(Page page) throws Exception
-    {
+    public List<PageData> findAlllistPage(Page page) throws Exception {
         return (List<PageData>) dao.findForList("EmployeeMapper.findAlllistPage", page);
     }
 
     @Override
-    public PageData findById(PageData pd) throws Exception
-    {
+    public PageData findById(PageData pd) throws Exception {
         return (PageData) dao.findForObject("EmployeeMapper.findById", pd);
     }
 
     @Override
-    public void deleteById(PageData pd) throws Exception
-    {
+    public void deleteById(PageData pd) throws Exception {
         dao.delete("EmployeeMapper.deleteById", pd);
     }
 
     @Override
-    public void updateWEPayTimeById(PageData pd) throws Exception
-    {
+    public void updateWEPayTimeById(PageData pd) throws Exception {
         dao.update("EmployeeMapper.updateWEPayTimeById", pd);
     }
+
 }

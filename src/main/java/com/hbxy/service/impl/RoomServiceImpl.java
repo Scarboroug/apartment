@@ -10,20 +10,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RoomServiceImpl implements RoomService
-{
+public class RoomServiceImpl implements RoomService {
 	@Autowired
 	private DaoSupport dao;
 
 	@Override
-	public List<PageData> findByRoomType(PageData pd) throws Exception
-	{
+	public List<PageData> findByRoomType(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("RoomMapper.findByRoomType", pd);
 	}
 
 	@Override
-	public PageData findById(PageData pd) throws Exception
-	{
+	public PageData findById(PageData pd) throws Exception {
 		return (PageData) dao.findForObject("RoomMapper.findById", pd);
 	}
 	
@@ -34,8 +31,7 @@ public class RoomServiceImpl implements RoomService
 	 * @param pd
 	 * @throws Exception  void<BR>
 	 */
-	public void deleteEmployeeById(PageData pd) throws Exception
-	{
+	public void deleteEmployeeById(PageData pd) throws Exception {
 //		dao.delete("EmployeeMapper.deleteById", pd);
 		dao.delete("EmployeeMapper.updateById", pd);
 		dao.update("RoomMapper.updateTotalById2", pd);
@@ -43,8 +39,7 @@ public class RoomServiceImpl implements RoomService
 	}
 
 	@Override
-	public List<PageData> findRoomByWE(Page page) throws Exception
-	{
+	public List<PageData> findRoomByWE(Page page) throws Exception {
 		return (List<PageData>) dao.findForList("RoomMapper.datalistPage", page);
 	}
 
@@ -55,8 +50,13 @@ public class RoomServiceImpl implements RoomService
 	}
 
 	@Override
-	public void insertRoom(PageData pd) throws Exception
-	{
+	public void insertRoom(PageData pd) throws Exception {
 		dao.save("RoomMapper.insertRoom", pd);
 	}
+
+	@Override
+	public void removeAll(int[] ids) throws Exception {
+		dao.findForObject("RoomMapper.removeAll", ids);
+	}
+
 }

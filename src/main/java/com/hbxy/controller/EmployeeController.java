@@ -20,8 +20,8 @@ import java.util.*;
 
 @Controller
 @RequestMapping("employee")
-public class EmployeeController extends BaseController
-{
+public class EmployeeController extends BaseController {
+
 	@Autowired
 	private EmployeeService employeeService;
 
@@ -39,8 +39,7 @@ public class EmployeeController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("toMenuIndex")
-	public String toMenuIndex()
-	{
+	public String toMenuIndex() {
 		return "housing/menu_index";
 	}
 
@@ -49,14 +48,12 @@ public class EmployeeController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("toIndex")
-	public String toIndex()
-	{
+	public String toIndex() {
 		return "housing/index";
 	}
 	
 	@RequestMapping("toDefault")
-	public String toDefault()
-	{
+	public String toDefault() {
 		return "housing/default";
 	}
 
@@ -66,19 +63,16 @@ public class EmployeeController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("list")
-	public ModelAndView list(Page page)
-	{
+	public ModelAndView list(Page page) {
 		PageData pd = this.getPageData();
 		page.setPd(pd); 
 		
 		List<PageData> list;
 		ModelAndView mv = this.getModelAndView();
-		try
-		{
+		try {
 			double money = 0;
 			list = employeeService.datalistPage(page);
-			for(int i = 0; i < list.size(); i++)
-			{
+			for(int i = 0; i < list.size(); i++) {
 				PageData pageData = list.get(i);
 				
 				Calendar outCalendar = Calendar.getInstance();
@@ -93,24 +87,19 @@ public class EmployeeController extends BaseController
 				long endTime = outCalendar.getTimeInMillis();
 				long days = (endTime - startTime) / (1000 * 3600 * 24);
 				String roomTypeId = roomService.findById(pageData).get("roomTypeId").toString();
-				if("1".equals(roomTypeId))
-				{
+				if("1".equals(roomTypeId)) {
 					pageData.put("csId", "8");
 				}
-				else if("2".equals(roomTypeId))
-				{
+				else if("2".equals(roomTypeId)) {
 					pageData.put("csId", "7");
 				}
-				else if("3".equals(roomTypeId))
-				{
+				else if("3".equals(roomTypeId)) {
 					pageData.put("csId", "8");
 				}
-				else if("4".equals(roomTypeId))
-				{
+				else if("4".equals(roomTypeId)) {
 					pageData.put("csId", "9");
 				}
-				else if("5".equals(roomTypeId))
-				{
+				else if("5".equals(roomTypeId)) {
 					pageData.put("csId", "6");
 				}
 				
@@ -129,8 +118,7 @@ public class EmployeeController extends BaseController
 			mv.addObject("msg", "list");
 			mv.addObject("pd", pd);
 			
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			mv.addObject("msg", Constant.AJAX_FAIL);
 			e.printStackTrace();
 		}
@@ -144,13 +132,11 @@ public class EmployeeController extends BaseController
 	 */
 	@RequestMapping("saveEmployee")
 	@ResponseBody
-	public String saveEmployee()
-	{
+	public String saveEmployee() {
 		PageData pd = this.getPageData();
 		
 		String time = pd.getString("enterTime");
-		if (StringUtils.isNotEmpty(time))
-		{
+		if (StringUtils.isNotEmpty(time)) {
 			Date date = DateUtil.str2Date(time);
 			//初始化日历对象
 			Calendar calendar = Calendar.getInstance();
@@ -166,17 +152,14 @@ public class EmployeeController extends BaseController
 			wePayCalendar.set(Calendar.DAY_OF_MONTH, wePayCalendar.getActualMinimum(Calendar.DAY_OF_MONTH));
 			
 			//入住日期大于下月最后一天，交租日期为下月最后一天
-			if(calendar.get(Calendar.DAY_OF_MONTH) > payCanlendar.getActualMaximum(Calendar.DAY_OF_MONTH))
-			{
+			if(calendar.get(Calendar.DAY_OF_MONTH) > payCanlendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				calendar.add(Calendar.MONTH, 1);
 			}
-			else
-			{
+			else {
 				//入住日期一个月月后的前一天
 				calendar.add(Calendar.MONTH, 1);
 				calendar.add(Calendar.DAY_OF_MONTH, -1);
 			}
-			
 			pd.put("payTime", time);
 			pd.put("nextPayTime", DateUtil.date2Str(calendar.getTime()));
 			pd.put("wePayTime", DateUtil.date2Str(wePayCalendar.getTime(), "yyyy-MM"));
@@ -184,15 +167,12 @@ public class EmployeeController extends BaseController
 			
 		}
 		
-		try
-		{
+		try {
 			employeeService.save(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
-		
 		return Constant.AJAX_SUCCESS;
 	}
 
@@ -202,27 +182,21 @@ public class EmployeeController extends BaseController
 	 */
 	@RequestMapping("findRoom")
 	@ResponseBody
-	public Object findRoom()
-	{
+	public Object findRoom() {
 		PageData pd = this.getPageData();
 		List<PageData> list;
 		Map<String,Object> map = new HashMap<String,Object>();
-		try
-		{
+		try {
 			PageData roomType = roomTypeService.findById(pd);
-			if(roomType != null)
-			{
+			if(roomType != null) {
 				pd.put("total", roomType.get("amount"));
-				
 				list = roomService.findByRoomType(pd);
 				map.put("varList", list);
 			}
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
-		
 		return JSONUtils.toJSONString(map);
 	}
 
@@ -234,16 +208,17 @@ public class EmployeeController extends BaseController
 	@ResponseBody
 	public String quitHousing()
 	{
+		//公共方法获取页面参数
 		PageData pd = this.getPageData();
+		//获取当前时间
 		String leaveTime = DateUtil.date2Str(new Date());
-		try
-		{
+		try {
+			//根据id查询信息
 			PageData empPd = employeeService.findById(pd);
 			empPd.put("leaveTime", leaveTime);
+			//更新人员离开时间、删除状态、房间人数、房间性别属性
 			roomService.deleteEmployeeById(empPd);
-			
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
@@ -256,19 +231,16 @@ public class EmployeeController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("empList")
-	public ModelAndView empList(Page page)
-	{
+	public ModelAndView empList(Page page) {
 		PageData pd = this.getPageData();
 		page.setPd(pd); 
 		
 		List<PageData> list = null;
 		ModelAndView mv = this.getModelAndView();
-		try
-		{
+		try {
 			list = employeeService.findAlllistPage(page);
 			
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			mv.addObject("msg", Constant.AJAX_FAIL);
 			e.printStackTrace();
 		}
@@ -286,14 +258,11 @@ public class EmployeeController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("goEmployeeEdit")
-	public ModelAndView goEdit()
-	{
+	public ModelAndView goEdit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd = employeeService.findById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -309,20 +278,20 @@ public class EmployeeController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("empEdit")
-	public ModelAndView empEdit()
-	{
-	PageData pd = this.getPageData();
-	
-	try
-	{
-		employeeService.updateEmpById(pd);
-	} catch (Exception e)
-	{
-		e.printStackTrace();
+	public ModelAndView empEdit() {
+		//公共方法获取页面参数
+		PageData pd = this.getPageData();
+		try {
+			//更新数据库相应字段
+			employeeService.updateEmpById(pd);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//返回页面参数
+		ModelAndView mv = this.getModelAndView();
+		mv.addObject("msg", "empList");
+		mv.setViewName("employee/employee_index");
+		return mv;
 	}
-	ModelAndView mv = this.getModelAndView();
-	mv.addObject("msg", "empList");
-	mv.setViewName("employee/employee_index");
-	return mv;
-	}
+
 }

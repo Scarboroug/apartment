@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("login")
 public class LoginController extends BaseController
 {
+
 	Logger logger = Logger.getLogger(LoginController.class);
 	@Autowired
 	private LoginService loginService;
@@ -46,10 +47,11 @@ public class LoginController extends BaseController
 	@ResponseBody
 	public String doLogin(HttpServletRequest request, String userName, String password)
 	{
-
+		//根据用户名获取查询用户
 		LoginBean loginBean = loginService.findByLoginName(userName);
 		if(loginBean != null)
 		{
+			//存在此用户比对密码是否正确
 			if(loginBean.getPassword().equals(new Mademd5().toMd5(password)))
 			{
 				HttpSession session = request.getSession();
@@ -59,7 +61,6 @@ public class LoginController extends BaseController
 				return Constant.AJAX_SUCCESS;
 			}
 		}
-		
 		return Constant.AJAX_FAIL;
 	}
 
@@ -85,4 +86,5 @@ public class LoginController extends BaseController
 		mv.setViewName("login/login");
 		return mv;
 	}
+
 }

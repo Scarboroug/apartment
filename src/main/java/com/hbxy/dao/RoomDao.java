@@ -4,8 +4,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hbxy.bean.RoomBean;
 
-public interface RoomDao
-{
+public interface RoomDao {
+
 	/**
 	 * 根据id查询房间信息
 	 * @param id
@@ -18,4 +18,5 @@ public interface RoomDao
 	 * @param room
 	 */
 	void insertRoom(RoomBean room);
+
 }

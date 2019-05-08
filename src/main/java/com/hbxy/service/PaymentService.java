@@ -5,8 +5,7 @@ import com.hbxy.util.PageData;
 
 import java.util.List;
 
-public interface PaymentService
-{
+public interface PaymentService {
 
 	List<PageData> listPage(PageData pd) throws Exception;
 	

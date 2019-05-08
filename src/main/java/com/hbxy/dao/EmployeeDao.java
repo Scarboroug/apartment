@@ -4,8 +4,7 @@ import com.hbxy.bean.EmployeeBean;
 
 import java.util.List;
 
-public interface EmployeeDao
-{
+public interface EmployeeDao {
 	
 	/**
 	 * 根据条件模糊查询人员信息
@@ -24,4 +23,5 @@ public interface EmployeeDao
 	 * @param emp
 	 */
 	int findCountByCondition(EmployeeBean emp);
+
 }

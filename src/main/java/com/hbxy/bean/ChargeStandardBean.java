@@ -1,7 +1,7 @@
 package com.hbxy.bean;
 
-public class ChargeStandardBean extends BaseBean
-{
+public class ChargeStandardBean extends BaseBean {
+
 	private Integer csId;
 	private String csName;
 	private Double csPrice;
@@ -64,4 +64,5 @@ public class ChargeStandardBean extends BaseBean
 	{
 		this.csUnit = csUnit;
 	}
+
 }

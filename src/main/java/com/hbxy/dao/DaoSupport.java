@@ -120,6 +120,15 @@ public class DaoSupport implements Dao {
 		return sqlSessionTemplate.selectList(str, obj);
 	}
 
+	/**
+	 * 查找对象封装成Map
+	 * @param str
+	 * @param obj
+	 * @param key
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
 	public Object findForMap(String str, Object obj, String key, String value) throws Exception {
 		return sqlSessionTemplate.selectMap(str, obj, key);
 	}

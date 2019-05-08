@@ -1,7 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "mybatis-3-mapper.dtd" >
   
 <mapper namespace="com.hbxy.dao.RoomDao">
-
 	<sql id="selectParams">
 		room_id, roomType_id, room_number, gender, total
 	</sql>

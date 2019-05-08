@@ -20,32 +20,27 @@ public class DataEntryServiceImpl implements DataEntryService {
     DaoSupport dao;
 
     @Override
-    public void save(PageData pd) throws Exception
-    {
+    public void save(PageData pd) throws Exception {
         dao.save("DataEntryMapper.save", pd);
     }
 
     @Override
-    public void updateById(PageData pd) throws Exception
-    {
+    public void updateById(PageData pd) throws Exception {
         dao.update("DataEntryMapper.updateById", pd);
     }
 
     @Override
-    public PageData findById(PageData pd) throws Exception
-    {
+    public PageData findById(PageData pd) throws Exception {
         return (PageData) dao.findForObject("DataEntryMapper.findById", pd);
     }
 
     @Override
-    public List<PageData> listPage(Page page) throws Exception
-    {
+    public List<PageData> listPage(Page page) throws Exception {
         return (List<PageData>) dao.findForList("DataEntryMapper.listPage", page);
     }
 
     @Override
-    public List<PageData> updateDaysById(PageData pd) throws Exception
-    {
+    public List<PageData> updateDaysById(PageData pd) throws Exception {
         return (List<PageData>) dao.findForList("DataEntryMapper.updateDaysById", pd);
     }
 

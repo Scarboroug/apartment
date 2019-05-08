@@ -15,8 +15,8 @@ import java.util.List;
 
 @Controller
 @RequestMapping("account")
-public class AccountController extends BaseController
-{
+public class AccountController extends BaseController {
+
 	@Autowired
 	private AccountService accountService;
 
@@ -42,19 +42,16 @@ public class AccountController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("list")
-	public ModelAndView list(Page page)
-	{
+	public ModelAndView list(Page page) {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = this.getPageData();
 		pd.put("role", 0);
 		page.setPd(pd);
 		
 		List<PageData> list = null;
-		try
-		{
+		try {
 			list = accountService.findlistPage(page);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -70,8 +67,7 @@ public class AccountController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("goSave")
-	public ModelAndView goSave()
-	{
+	public ModelAndView goSave() {
 		ModelAndView mv = this.getModelAndView();
 		mv.addObject("msg", "save");
 		mv.setViewName("account/account_add");
@@ -83,18 +79,15 @@ public class AccountController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("save")
-	public ModelAndView save()
-	{
+	public ModelAndView save() {
 		PageData pd = this.getPageData();
 		String password = pd.getString("password");
 		password = new Mademd5().toMd5(password);
 		pd.put("password", password);
 		
-		try
-		{
+		try {
 			accountService.save(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		ModelAndView mv = this.getModelAndView();
@@ -108,14 +101,11 @@ public class AccountController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("goEdit")
-	public ModelAndView goEdit()
-	{
+	public ModelAndView goEdit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd = accountService.findById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -131,15 +121,12 @@ public class AccountController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("edit")
-	public ModelAndView edit()
-	{
+	public ModelAndView edit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd.put("password", new Mademd5().toMd5(pd.getString("password")));
 			accountService.updateById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		ModelAndView mv = this.getModelAndView();
@@ -154,24 +141,20 @@ public class AccountController extends BaseController
 	 */
 	@RequestMapping("removeAll")
 	@ResponseBody
-	public String removeAll()
-	{
+	public String removeAll() {
 		PageData pd = this.getPageData();
 		
-		try
-		{
+		try {
 			String id = pd.getString("ids");
 			if(null != id && !"".equals(id)){
 				String ids[] = id.split(",");
 				int[] loginIds = new int[ids.length];
-				for(int i = 0; i < ids.length; i++)
-				{
+				for(int i = 0; i < ids.length; i++) {
 					loginIds[i] = Integer.parseInt(ids[i]);
 				}
 				accountService.removeAll(loginIds);
 			}
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
@@ -185,25 +168,21 @@ public class AccountController extends BaseController
 	 */
 	@RequestMapping("checkUser")
 	@ResponseBody
-	public String checkUser()
-	{
+	public String checkUser() {
 		PageData pd = this.getPageData();
 		String loginName = pd.getString("loginName");
-		try
-		{
+		try {
 			List<PageData> list = accountService.findAllLogin(pd);
-			for(int i = 0; i < list.size(); i++)
-			{
+			for(int i = 0; i < list.size(); i++) {
 				pd = list.get(i);
-				if(pd.getString("loginName").equals(loginName))
-				{
+				if(pd.getString("loginName").equals(loginName)) {
 					return Constant.AJAX_FAIL;
 				}
 			}
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return Constant.AJAX_SUCCESS;
 	}
+
 }

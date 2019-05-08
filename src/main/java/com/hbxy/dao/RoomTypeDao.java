@@ -4,8 +4,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hbxy.bean.RoomTypeBean;
 
-public interface RoomTypeDao
-{
+public interface RoomTypeDao {
+
 	/**
 	 * 添加房间类型
 	 * @param roomType
@@ -30,4 +30,5 @@ public interface RoomTypeDao
 	 * @param roomType
 	 */
 	void updateRoomType(RoomTypeBean roomType);
+
 }

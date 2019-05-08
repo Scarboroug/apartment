@@ -1,7 +1,7 @@
 package com.hbxy.bean;
 
-public class EmployeeBean extends BaseBean
-{
+public class EmployeeBean extends BaseBean {
+
 	private Integer empId;
 	private String name;
 	private String idNumber;
@@ -227,4 +227,5 @@ public class EmployeeBean extends BaseBean
 	{
 		this.endTime = endTime;
 	}
+
 }

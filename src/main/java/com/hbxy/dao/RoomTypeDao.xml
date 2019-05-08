@@ -1,7 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "mybatis-3-mapper.dtd" >
   
 <mapper namespace="com.hbxy.dao.RoomTypeDao">
-	
 	<resultMap type="com.hbxy.bean.RoomTypeBean" id="mapId">
 		<id property="roomTypeId" column="roomType_id"/>
 		<result property="roomType" column="room_type"/>

@@ -22,8 +22,8 @@ import java.util.List;
 
 @Controller
 @RequestMapping("dataEntry")
-public class DataEntryController extends BaseController
-{
+public class DataEntryController extends BaseController {
+
 	@Autowired
 	private DataEntryService dataEntryService;
 
@@ -41,8 +41,7 @@ public class DataEntryController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("toMenuIndex")
-	public ModelAndView toMenuIndex()
-	{
+	public ModelAndView toMenuIndex() {
 		ModelAndView mv  = this.getModelAndView();
 		mv.setViewName("dataEntry/dataEntry_menu");
 		return mv;
@@ -54,21 +53,17 @@ public class DataEntryController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("list")
-	public ModelAndView list(Page page)
-	{
+	public ModelAndView list(Page page) {
 		PageData pd = this.getPageData();
-		if(StringUtils.isEmpty(pd.getString("time")))
-		{
+		if(StringUtils.isEmpty(pd.getString("time"))) {
 			pd.put("time", DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
 		}
 		page.setPd(pd);
 		List<PageData> list = new ArrayList<PageData>();
 		
-		try
-		{
+		try {
 			list = RoomService.findRoomByWE(page);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -87,21 +82,17 @@ public class DataEntryController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("waterList")
-	public ModelAndView waterList(Page page)
-	{
+	public ModelAndView waterList(Page page) {
 		PageData pd = this.getPageData();
-		if(StringUtils.isEmpty(pd.getString("time")))
-		{
+		if(StringUtils.isEmpty(pd.getString("time"))) {
 			pd.put("time", DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
 		}
 		page.setPd(pd);
 		List<PageData> list = new ArrayList<>();
 		
-		try
-		{
+		try {
 			list = dataEntryService.listPage(page);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -119,21 +110,17 @@ public class DataEntryController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("electricList")
-	public ModelAndView electricList(Page page)
-	{
+	public ModelAndView electricList(Page page) {
 		PageData pd = this.getPageData();
-		if(StringUtils.isEmpty(pd.getString("time")))
-		{
+		if(StringUtils.isEmpty(pd.getString("time"))) {
 			pd.put("time", DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
 		}
 		page.setPd(pd);
 		List<PageData> list = new ArrayList<>();
 		
-		try
-		{
+		try {
 			list = dataEntryService.listPage(page);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -151,31 +138,25 @@ public class DataEntryController extends BaseController
 	 */
 	@RequestMapping("save")
 	@ResponseBody
-	public Object save()
-	{
+	public Object save() {
 		PageData pd = this.getPageData();
-		if(StringUtils.isEmpty(pd.getString("time")))
-		{
+		if(StringUtils.isEmpty(pd.getString("time"))) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date());
 			calendar.add(Calendar.MONTH, -1);
 			pd.put("time", DateUtil.date2Str(calendar.getTime(), "yyyy-MM"));
 		}
-		
 		long count = 0;
 		long days = 0;
-		try
-		{
+		try {
 			dataEntryService.save(pd);
 			String weId = pd.get("weId").toString();
 			List<PageData> list = paymentService.findEmpByRoomId(pd);
-			if(list != null)
-			{
+			if(list != null) {
 				String time = pd.getString("time");
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTime(DateUtil.str2Date(time + "-01"));
-				for(int i = 0; i < list.size(); i++)
-				{
+				for(int i = 0; i < list.size(); i++) {
 					days = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 					PageData pageData = list.get(i);
 					String leaveTime = pageData.getString("leaveTime");
@@ -183,8 +164,7 @@ public class DataEntryController extends BaseController
 					Calendar enterCalendar = Calendar.getInstance();
 					enterCalendar.setTime(DateUtil.str2Date(enterTime));
 					long enterDays = (enterCalendar.getTimeInMillis() - calendar.getTimeInMillis()) / (1000 * 60 * 60 * 24);
-					if(!StringUtils.isEmpty(leaveTime))
-					{
+					if(!StringUtils.isEmpty(leaveTime)) {
 						//当月退租者居住时长
 						Calendar leaveCalendar = Calendar.getInstance();
 						leaveCalendar.setTime(DateUtil.str2Date(leaveTime));
@@ -192,20 +172,17 @@ public class DataEntryController extends BaseController
 						days = leaveDays;
 						employeeService.deleteById(pageData);
 					}
-					else if(enterDays > 0)
-					{
+					else if(enterDays > 0) {
 						//当月入住者居住时长
 						days = days - enterDays;
 					}
-						
 					count += days;
 				}
 			}
 			pd.put("days", count);
 			pd.put("weId", weId);
 			dataEntryService.updateDaysById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
@@ -218,14 +195,11 @@ public class DataEntryController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("goWaterEdit")
-	public ModelAndView goEdit()
-	{
+	public ModelAndView goEdit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd = dataEntryService.findById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -242,14 +216,11 @@ public class DataEntryController extends BaseController
 	 */
 	@RequestMapping("waterEdit")
 	@ResponseBody
-	public void waterEdit()
-	{
+	public void waterEdit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			dataEntryService.updateById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -259,22 +230,18 @@ public class DataEntryController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("goElectricEdit")
-	public ModelAndView goElectricEdit()
-	{
+	public ModelAndView goElectricEdit() {
+		//获取用电量并跳转到修改页面
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd = dataEntryService.findById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("dataEntry/electric_edit");
 		mv.addObject("pd", pd);
 		mv.addObject("msg", "electircEdit");
-
 		return mv;
 	}
 
@@ -283,15 +250,13 @@ public class DataEntryController extends BaseController
 	 */
 	@RequestMapping("electircEdit")
 	@ResponseBody
-	public void electircEdit()
-	{
+	public void electircEdit() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			dataEntryService.updateById(pd);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 }

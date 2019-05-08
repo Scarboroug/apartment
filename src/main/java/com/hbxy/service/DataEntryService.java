@@ -5,8 +5,8 @@ import com.hbxy.util.PageData;
 
 import java.util.List;
 
-public interface DataEntryService
-{
+public interface DataEntryService {
+
 	void save(PageData pd) throws Exception;
 	
 	void updateById(PageData pd) throws Exception;

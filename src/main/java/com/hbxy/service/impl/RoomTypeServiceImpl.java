@@ -10,26 +10,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RoomTypeServiceImpl implements RoomTypeService
-{
+public class RoomTypeServiceImpl implements RoomTypeService {
 	@Autowired
 	private DaoSupport dao;
 
 	@Override
-	public PageData findById(PageData pd) throws Exception
-	{
+	public PageData findById(PageData pd) throws Exception {
 		return (PageData) dao.findForObject("RoomTypeMapper.findById", pd);
 	}
 
 	@Override
-	public void updateRoomType(PageData pd) throws Exception
-	{
+	public void updateRoomType(PageData pd) throws Exception {
 		dao.findForObject("RoomTypeMapper.updateRoomType", pd);
 	}
 
 	@Override
-	public List<PageData> findAlllistPage(Page page) throws Exception
-	{
+	public List<PageData> findAlllistPage(Page page) throws Exception {
 		return (List<PageData>) dao.findForList("RoomTypeMapper.findAlllistPage", page);
 	}
+
 }

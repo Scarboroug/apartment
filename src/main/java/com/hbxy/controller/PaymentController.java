@@ -23,8 +23,8 @@ import java.util.List;
 
 @Controller
 @RequestMapping("payment")
-public class PaymentController extends BaseController
-{
+public class PaymentController extends BaseController {
+
 	@Autowired
 	private PaymentService paymentService;
 	
@@ -39,8 +39,7 @@ public class PaymentController extends BaseController
      * @return
      */
 	@RequestMapping("toMenuIndex")
-	public ModelAndView toMenuIndex()
-	{
+	public ModelAndView toMenuIndex() {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("payment/menu_index");
 		return mv;
@@ -52,8 +51,7 @@ public class PaymentController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("list")
-	public ModelAndView list(Page page)
-	{
+	public ModelAndView list(Page page) {
 		PageData pd = this.getPageData();
 //		String time = pd.getString("time");
 //		if(StringUtils.isEmpty(time))
@@ -64,11 +62,9 @@ public class PaymentController extends BaseController
 		page.setPd(pd);
 		
 		List<PageData> list = new ArrayList<PageData>();
-		try
-		{
+		try {
 			list = paymentService.findRentlistPage(page);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -87,11 +83,9 @@ public class PaymentController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("weList")
-	public ModelAndView weList(Page page)
-	{
+	public ModelAndView weList(Page page) {
 		PageData pd = this.getPageData();
-		if(StringUtils.isEmpty(pd.getString("time")))
-		{
+		if(StringUtils.isEmpty(pd.getString("time"))) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date());
 			calendar.add(Calendar.MONTH, -1);
@@ -100,20 +94,16 @@ public class PaymentController extends BaseController
 		page.setPd(pd);
 		
 		List<PageData> list = new ArrayList<PageData>();
-		try
-		{
+		try {
 			list = paymentService.listPage(page);
-			if(list != null)
-			{
-				for(int i = 0; i < list.size(); i++)
-				{
+			if(list != null) {
+				for(int i = 0; i < list.size(); i++) {
 					PageData pageData = list.get(i);
 					pageData.put("price", getPrice(pageData));
 				}
 			}
 			
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -125,23 +115,21 @@ public class PaymentController extends BaseController
 		return mv;
 	}
 	
-	public double getPrice(PageData pd)
-	{
+	public double getPrice(PageData pd) {
 		long count = 0;
 		double price = 0;
 		long days = 0;
 		long day = 0;
-		try
-		{
+		try {
+			//通过id获取指定宿舍指定时间还，没有交水电费人员信息
 			List<PageData> list = paymentService.findEmpByRoomId(pd);
-			if(list != null)
-			{
+			if(list != null) {
 				String time = pd.getString("time");
 				String empId = "";
+				//指定月份1号开始
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTime(DateUtil.str2Date(time + "-01"));
-				for(int i = 0; i < list.size(); i++)
-				{
+				for(int i = 0; i < list.size(); i++) {
 					//获取指定月份当月天数
 					days = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 					PageData pageData = list.get(i);
@@ -151,21 +139,17 @@ public class PaymentController extends BaseController
 					enterCalendar.setTime(DateUtil.str2Date(enterTime));
 					long enterDays = (enterCalendar.getTimeInMillis() - calendar.getTimeInMillis()) / (1000 * 60 * 60 * 24);
 					//判断是否当月入住
-					if(enterDays > 0)
-					{
+					if(enterDays > 0) {
 						//当月入住者居住时长
 						days = days - enterDays;
 					}
-						
 					//获取人员入住总天数
 					count = Long.parseLong(pageData.get("days").toString());
 					//确定本人入住时长
-					if(pd.get("empId").toString().equals(empId))
-					{
+					if(pd.get("empId").toString().equals(empId)) {
 						day = days;
 					}
 				}
-				
 				double waterStandard = 0;
 				double electricStandard = 0;
 				double water = (double) pd.get("water");
@@ -175,24 +159,19 @@ public class PaymentController extends BaseController
 				PageData ePd = new PageData();
 				csPd.put("csId", 3);
 				wPd = chargeStandardService.findById(csPd);
-				if(wPd != null)
-				{
+				if(wPd != null) {
 					waterStandard = (double) wPd.get("csPrice");
 				}
-				
 				csPd.put("csId", 2);
 				ePd = chargeStandardService.findById(csPd);
-				if(ePd != null)
-				{
+				if(ePd != null) {
 					electricStandard = (double) ePd.get("csPrice");
 				}
 				price = (water * waterStandard + electric * electricStandard) / count * day;
-				//将结果四舍五入
+				//四舍五入
 				price = new BigDecimal(price).setScale(2, RoundingMode.UP).doubleValue();
-
 			}
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return price;
@@ -204,11 +183,9 @@ public class PaymentController extends BaseController
 	 */
 	@RequestMapping("payWE")
 	@ResponseBody
-	public String payWE()
-	{
+	public String payWE() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
 			pd = employeeService.findById(pd);
 			
 			String wePayTime = pd.getString("wePayTime");
@@ -234,8 +211,7 @@ public class PaymentController extends BaseController
 			{
 				calendar.set(Calendar.DAY_OF_MONTH, enterCalendar.get(Calendar.DAY_OF_MONTH) - 1);
 			}*/
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
@@ -249,42 +225,39 @@ public class PaymentController extends BaseController
 	 */
 	@RequestMapping("payRental")
 	@ResponseBody
-	public Object payRental()
-	{
+	public Object payRental() {
 		PageData pd = this.getPageData();
-		try
-		{
+		try {
+			//查询交租人员信息
 			pd = employeeService.findById(pd);
 			String enterTime = pd.getString("enterTime");
 			String payTime = pd.getString("nextPayTime") ;
+			//根据入住时间，计算下次交租时间
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(DateUtil.str2Date(payTime));
 			calendar.add(Calendar.MONTH, 1);
 			Calendar enterCalendar = Calendar.getInstance();
 			enterCalendar.setTime(DateUtil.str2Date(enterTime));
-			
 			//入住日期大于下月最后一天，交租日期为下月最后一天
-			if(enterCalendar.get(Calendar.DAY_OF_MONTH) <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
-			{
+			if(enterCalendar.get(Calendar.DAY_OF_MONTH) <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				calendar.set(Calendar.DAY_OF_MONTH, enterCalendar.get(Calendar.DAY_OF_MONTH) - 1);
-			}
-			else
-			{
+			} else {
 				calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
 			}
 			PageData pageData = new PageData();
 			pageData.put("payTime", payTime);
+			//次月交租日期更新为最新交租时间
 			pageData.put("nextPayTime", DateUtil.date2Str(calendar.getTime()));
 			pageData.put("empId", pd.get("empId").toString());
-			
+			//进行更新操作
 			employeeService.updateEmpById(pageData);
 			
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
 		
 		return Constant.AJAX_SUCCESS;
 	}
+
 }

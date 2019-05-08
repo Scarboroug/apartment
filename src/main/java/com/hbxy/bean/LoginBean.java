@@ -1,7 +1,7 @@
 package com.hbxy.bean;
 
-public class LoginBean extends BaseBean
-{
+public class LoginBean extends BaseBean {
+
 	private Integer loginId;
 	private String loginName;
 	private String password;
@@ -64,4 +64,5 @@ public class LoginBean extends BaseBean
 	{
 		this.role = role;
 	}
+
 }

@@ -4,8 +4,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hbxy.bean.LoginBean;
 
-public interface LoginService
-{
+public interface LoginService {
+
 	/**
 	 * 根据登录名查询用户信息
 	 * @param loginName
@@ -31,6 +31,5 @@ public interface LoginService
 	 * @param loginName
 	 */
 	void deleteByLoginName(@Param("loginName") String loginName);
-	
-	
+
 }

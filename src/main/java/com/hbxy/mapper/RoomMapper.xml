@@ -100,4 +100,13 @@
 			</if>
 		</where> 
 	</select>
+
+	<delete id="removeAll" parameterType="int">
+		delete from room
+		where
+		room_id in
+		<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
 </mapper>

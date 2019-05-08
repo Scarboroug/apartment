@@ -21,20 +21,18 @@ public class ChargeStandardServiceImpl implements ChargeStandardService {
     private DaoSupport dao;
 
     @Override
-    public PageData findById(PageData pd) throws Exception
-    {
+    public PageData findById(PageData pd) throws Exception {
         return (PageData) dao.findForObject("ChargeStandardMapper.findById", pd);
     }
 
     @Override
-    public void updateById(PageData pd) throws Exception
-    {
+    public void updateById(PageData pd) throws Exception {
         dao.update("ChargeStandardMapper.update", pd);
     }
 
     @Override
-    public List<PageData> findAll(Page page) throws Exception
-    {
+    public List<PageData> findAll(Page page) throws Exception {
         return (List<PageData>) dao.findForList("ChargeStandardMapper.findAlllistPage", page);
     }
+
 }

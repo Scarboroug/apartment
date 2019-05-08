@@ -21,38 +21,33 @@ public class AccountServiceImpl implements AccountService {
     private DaoSupport dao;
 
     @Override
-    public List<PageData> findlistPage(Page page) throws Exception
-    {
+    public List<PageData> findlistPage(Page page) throws Exception {
         return (List<PageData>) dao.findForList("AccountMapper.findlistPage", page);
     }
 
     @Override
-    public PageData findById(PageData pd) throws Exception
-    {
+    public PageData findById(PageData pd) throws Exception {
         return (PageData) dao.findForObject("AccountMapper.findById", pd);
     }
 
     @Override
-    public void updateById(PageData pd) throws Exception
-    {
+    public void updateById(PageData pd) throws Exception {
         dao.findForObject("AccountMapper.updateById", pd);
     }
 
     @Override
-    public void save(PageData pd) throws Exception
-    {
+    public void save(PageData pd) throws Exception {
         dao.findForObject("AccountMapper.save", pd);
     }
 
     @Override
-    public void removeAll(int[] ids) throws Exception
-    {
+    public void removeAll(int[] ids) throws Exception {
         dao.findForObject("AccountMapper.removeAll", ids);
     }
 
     @Override
-    public List<PageData> findAllLogin(PageData pd) throws Exception
-    {
+    public List<PageData> findAllLogin(PageData pd) throws Exception {
         return (List<PageData>) dao.findForList("DataEntryMapper.findAllLogin", pd);
     }
+
 }
