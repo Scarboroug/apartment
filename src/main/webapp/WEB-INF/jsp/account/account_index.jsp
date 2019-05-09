@@ -30,7 +30,7 @@
 	<!-- 导入layer插件样式 -->
 	<link type="text/css" rel="stylesheet" href="${contextPath }/js/layer/mobile/need/layer.css"/>
 	<script type="text/javascript" src="${contextPath }/js/layer/layer.js" ></script>
-	<script src="static/js/md5.js" type="text/javascript"></script>
+	<script src="${contextPath }/static/js/md5.js" type="text/javascript"></script>
 	<!-- 导入日期插件 -->
 	<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>   
 	<style type="text/css">
@@ -96,10 +96,10 @@
 												</td>
 												<td class='center' style="width: 150px;">
 													<c:if test="${var.role == 0}">
-														<a href="javascript:;" onclick="edit(${var.loginId })">重置密码</a> 
+														<a href="javascript:;" onclick="edits(${var.loginId })">重置密码</a>
 													</c:if>
 													<c:if test="${var.loginId == sessionScope.USER_ID}">
-														<a href="javascript:;" onclick="edit('${var.loginId }', '${var.password }')">修改</a> 
+														<a href="javascript:;" onclick="edit('${var.loginId }', '${var.password }')">重置密码</a>
 													</c:if>
 												</td>
 											</tr>
@@ -225,9 +225,6 @@
                 	var password1 = body.find("#password1").val();
                 	var loginName = body.find("#loginName").val();
                 	newPassword = hex_md5(newPassword).toUpperCase();
-                	// console.log(newPassword);
-                	// console.log(oldPassword);
-                	
                 	if(isEmpty(loginName))
                 	{
                 		parent.layer.msg('用户名不可为空');
@@ -264,7 +261,42 @@
                 }
             })
 		}
-		
+
+		function edits(id)
+		{
+			layer.open({
+				type:2,
+				area: ['500px', '350px'],
+				resize:false,
+				content:'${contextPath }/account/goEdit.do?loginId=' + id,
+				btn:['保存','返回'],
+				yes:function (index,layero) {
+					var body = layer.getChildFrame('body', index);
+					var password = body.find("input[name='password']").val();
+					var password1 = body.find("#password1").val();
+					var loginName = body.find("#loginName").val();
+					if(isEmpty(loginName)) {
+						parent.layer.msg('用户名不可为空');
+					}
+					else if(isEmpty(password)) {
+						parent.layer.msg('请输入新密码');
+					}
+					else if(isEmpty(password1)) {
+						parent.layer.msg('请再次输入密码');
+					}
+					else if(password != password1) {
+						parent.layer.msg('请确保密码一致');
+					}
+					else {
+						body.find('#infoForm').submit();
+						parent.layer.alert("修改成功", {icon: 1});
+						window.location.href = "${contextPath }/account/list.do";
+					}
+				},
+				btn2:function () {
+				}
+			})
+		}
 		//批量操作
 		function removeAll(msg){
 			layer.confirm(msg, { title: "删除确认" }, function (index) {  
