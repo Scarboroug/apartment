@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="kv-item clearfix">
-                                <label>宿舍号：</label>
+                                <label>房间号：</label>
                                 <div class="kv-item-content">
                                 	<input type="text" readonly="readonly" name="roomNumber" value="${pd.roomNumber }">
                                 </div>

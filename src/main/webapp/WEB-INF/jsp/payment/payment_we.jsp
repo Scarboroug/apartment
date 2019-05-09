@@ -93,7 +93,7 @@
 									</th>
 									<th class="center">序号</th>
 									<th class="center">姓名</th>
-									<th class="center">宿舍号</th>
+									<th class="center">房间号</th>
 									<th class="center">需交费用</th>
 									<th class="center">用水量</th>
 									<th class="center">用电量</th>

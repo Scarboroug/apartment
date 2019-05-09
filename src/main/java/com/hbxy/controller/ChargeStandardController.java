@@ -46,7 +46,6 @@ public class ChargeStandardController extends BaseController {
 	public ModelAndView list(Page page) {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = this.getPageData();
-		
 		List<PageData> list = null;
 		try {
 			list = chargeStandardService.findAll(page);
@@ -132,7 +131,7 @@ public class ChargeStandardController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		ModelAndView mv = this.getModelAndView();
 		mv.addObject("pd", pd);
 		mv.addObject("msg", "roomTypeEdit");

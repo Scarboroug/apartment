@@ -90,8 +90,7 @@
                                         <option value="0" selected="selected">请选择房间号</option>
                                     </select>
                                 </div>
-                                <div style="float:left; color:#C0BFBF; padding-top:5px; font-size:14px; margin-left:10px; width:10px; height:22px;" id="checkFindRoom">
-                                </div>
+                                <div style="float:left; color:#C0BFBF; padding-top:5px; font-size:14px; margin-left:10px; width:10px; height:22px;" id="checkFindRoom"></div>
                             </div>
                             <div class="kv-item clearfix">
                                 <label><span class="impInfo">*</span>手机号：</label>
@@ -260,7 +259,7 @@
 		        tips: [2, "#E45151"],
 		        time: 2000
 		    })
-		}
+        }
 		return false;	
 	}
 	

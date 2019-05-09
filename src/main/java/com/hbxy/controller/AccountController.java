@@ -47,7 +47,7 @@ public class AccountController extends BaseController {
 		PageData pd = this.getPageData();
 		pd.put("role", 0);
 		page.setPd(pd);
-		
+
 		List<PageData> list = null;
 		try {
 			list = accountService.findlistPage(page);
@@ -143,7 +143,6 @@ public class AccountController extends BaseController {
 	@ResponseBody
 	public String removeAll() {
 		PageData pd = this.getPageData();
-		
 		try {
 			String id = pd.getString("ids");
 			if(null != id && !"".equals(id)){
@@ -158,7 +157,6 @@ public class AccountController extends BaseController {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;
 		}
-		
 		return Constant.AJAX_SUCCESS;
 	}
 

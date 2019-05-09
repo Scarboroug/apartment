@@ -13,7 +13,9 @@
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/common.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/cssreset-min.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/My97DatePicker/skin/WdatePicker.css">
-<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>  
+<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>
+    <link type="text/css" rel="stylesheet" href="${contextPath }/js/layer/mobile/need/layer.css"/>
+    <script type="text/javascript" src="${contextPath }/js/layer/layer.js" ></script>
 <style type="text/css">
 	.citys{
 		margin-bottom: 10px;
@@ -43,21 +45,23 @@
                             <div class="kv-item clearfix">
                                 <label>房间类型：</label>
                                 <div class="kv-item-content">
-                                	<select name="roomTypeId" id="roomTypeId">
+                                	<select name="roomTypeId" id="roomTypeId" onblur="checkFindRoom()">
 	                                        <option value="6" ${pd.roomTypeId == 6 ? 'selected' : '6' }>请选择房间类型</option>
 	                                        <option value="5" ${pd.roomTypeId == 5 ? 'selected' : '6' }>单人间</option>
 	                                        <option value="2" ${pd.roomTypeId == 2 ? 'selected' : '6' }>双人间</option>
 	                                        <option value="1" ${pd.roomTypeId == 1 ? 'selected' : '6' }>四人间</option>
 	                                        <option value="3" ${pd.roomTypeId == 3 ? 'selected' : '6' }>六人间</option>
 	                                        <option value="4" ${pd.roomTypeId == 4 ? 'selected' : '6' }>八人间</option>
-	                                    </select> 
+	                                    </select>
                                 	<input type="hidden" name="roomId" value="${pd.roomId }">
                                 </div>
+                                <div style="float:left; color:#C0BFBF; padding-top:5px; font-size:14px; margin-left:10px; width:10px; height:22px;" id="checkFindRoom"></div>
                             </div>
+
                             <div class="kv-item clearfix">
                                 <label>房间号：</label>
                                 <div class="kv-item-content">
-                                    <input type="text" name="roomNumber" value="${pd.roomNumber }">
+                                    <input type="text" name="roomNumber" value="${pd.roomNumber }"onfocus="checkFindRoom()">
                                 </div>
                             </div>
                         </form>
@@ -70,7 +74,25 @@
 </body>
 
 <script type="text/javascript">
-	
+    function checkFindRoom()
+    {
+        var roomTypeId = $("#roomTypeId").val();
+        if(roomTypeId != 6 || roomTypeId ==null)
+        {
+            $("#checkFindRoom").css("color", "green");
+            $("#checkFindRoom").text("✔");
+            return true;
+        }
+        else
+        {
+            $("#checkFindRoom").text("");
+            layer.tips('请选择房间类型', '#roomTypeId', {
+                tips: [2, "#E45151"],
+                time: 2000
+            })
+        }
+        return false;
+    }
 	
 </script>
 </html>
