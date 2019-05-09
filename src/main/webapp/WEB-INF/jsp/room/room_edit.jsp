@@ -61,7 +61,7 @@
                             <div class="kv-item clearfix">
                                 <label>房间号：</label>
                                 <div class="kv-item-content">
-                                    <input type="text" name="roomNumber" value="${pd.roomNumber }"onfocus="checkFindRoom()">
+                                    <input type="text" name="roomNumber" value="${pd.roomNumber }" onfocus="checkFindRoom()" onkeyup="check(this)">
                                 </div>
                             </div>
                         </form>
@@ -74,6 +74,7 @@
 </body>
 
 <script type="text/javascript">
+
     function checkFindRoom()
     {
         var roomTypeId = $("#roomTypeId").val();
@@ -93,6 +94,14 @@
         }
         return false;
     }
-	
+    function check(obj)
+    {
+        obj.value = obj.value.replace(/[^\d.]/g,"");//清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,"");//验证第一个字符是数字而不是
+        obj.value = obj.value.replace(/\.{2,}/g,".");//只保留第一个. 清除多余的
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    }
+
 </script>
 </html>

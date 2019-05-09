@@ -50,7 +50,7 @@
                             <div class="kv-item clearfix">
                                 <label>标准价格：</label>
                                 <div class="kv-item-content">
-                                	<input type="text" value="${pd.csPrice }" name="csPrice">
+                                	<input type="text" value="${pd.csPrice }" name="csPrice" onkeyup="check(this)">
                                 </div>
                             </div>
                             <div class="kv-item clearfix">
@@ -67,5 +67,15 @@
     </div>
     <div id="saper-ft"></div>
 </body>
+<script type="text/javascript">
 
+    function check(obj)
+    {
+        obj.value = obj.value.replace(/[^\d.]/g,"");//清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,"");//验证第一个字符是数字而不是
+        obj.value = obj.value.replace(/\.{2,}/g,".");//只保留第一个. 清除多余的
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    }
+</script>
 </html>
