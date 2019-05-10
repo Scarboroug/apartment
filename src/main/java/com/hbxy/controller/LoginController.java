@@ -18,14 +18,13 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("login")
 public class LoginController extends BaseController
 {
-
 	Logger logger = Logger.getLogger(LoginController.class);
+
 	@Autowired
 	private LoginService loginService;
 	
 	@RequestMapping("toLogin")
-	public String toLogin()
-	{
+	public String toLogin() {
 		System.out.println("进入注册页面");
 		return "login/login";
 	}
@@ -49,11 +48,9 @@ public class LoginController extends BaseController
 	{
 		//根据用户名获取查询用户
 		LoginBean loginBean = loginService.findByLoginName(userName);
-		if(loginBean != null)
-		{
+		if(loginBean != null) {
 			//存在此用户比对密码是否正确
-			if(loginBean.getPassword().equals(new Mademd5().toMd5(password)))
-			{
+			if(loginBean.getPassword().equals(new Mademd5().toMd5(password))) {
 				HttpSession session = request.getSession();
 				session.setAttribute(Constant.SESSION_USERID_INTEGER, loginBean.getLoginId());
 				session.setAttribute(Constant.SESSION_USER_NAME_STRING, loginBean.getLoginName());
