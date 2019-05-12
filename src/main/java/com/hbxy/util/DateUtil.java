@@ -418,6 +418,25 @@ public class DateUtil
 			return null;
 		}
 	}
+
+	/**
+	 * 按照yyyy-MM-dd的格式，字符串转时间戳
+	 * @param date
+	 * @return
+	 */
+	public static Long str2Dates ( String date) {
+		if (notEmpty(date)) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				return sdf.parse(date).getTime();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return new Date().getTime();
+		} else {
+			return null;
+		}
+	}
 	
 	/**
 	 * 按照指定格式的格式，字符串转日期

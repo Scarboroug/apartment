@@ -16,10 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping("payment")
@@ -64,10 +62,22 @@ public class PaymentController extends BaseController {
 		List<PageData> list = new ArrayList<PageData>();
 		try {
 			list = paymentService.findRentlistPage(page);
+			for (PageData result:list){
+				Map map = new HashMap();
+				String nextPayTime = result.getString("nextPayTime");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				if(DateUtil.dateBetweenIncludeToday(sdf.parse(nextPayTime),sdf.parse(sdf.format(new Date()))) > 0){
+					map.put("state","1");
+				}else {
+					map.put("state","2");
+				}
+				result.putAll(map);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+
 		ModelAndView mv = this.getModelAndView();
 		mv.addObject("varList", list);
 		mv.setViewName("payment/index");

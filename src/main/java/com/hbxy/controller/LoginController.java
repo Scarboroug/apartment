@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("login")
-public class LoginController extends BaseController
-{
+public class LoginController extends BaseController {
+
 	Logger logger = Logger.getLogger(LoginController.class);
 
 	@Autowired
@@ -44,8 +44,7 @@ public class LoginController extends BaseController
 	 */
 	@RequestMapping("doLogin")
 	@ResponseBody
-	public String doLogin(HttpServletRequest request, String userName, String password)
-	{
+	public String doLogin(HttpServletRequest request, String userName, String password) {
 		//根据用户名获取查询用户
 		LoginBean loginBean = loginService.findByLoginName(userName);
 		if(loginBean != null) {
@@ -66,19 +65,18 @@ public class LoginController extends BaseController
 	 * @return
 	 */
 	@RequestMapping("logout")
-	public ModelAndView logout()
-	{
-		try
-		{
+	public ModelAndView logout() {
+
+		try {
 			HttpSession session = this.getRequest().getSession();
 			session.removeAttribute(Constant.SESSION_USER_NAME_STRING);
 			session.removeAttribute(Constant.SESSION_USER_ROLE_INTEGER);
 			session.removeAttribute(Constant.SESSION_USERID_INTEGER);
 			
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		ModelAndView mv= this.getModelAndView();
 		mv.setViewName("login/login");
 		return mv;

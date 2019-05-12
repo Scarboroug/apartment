@@ -31,7 +31,9 @@
 <%-- 	<script type="text/javascript" src="${contextPath }/static/js/jquery-1.7.2.js"></script> --%>
 	<link rel="stylesheet" href="static/css/datepicker.css" /><!-- 日期框 -->
 	<!-- 导入日期插件 -->
-	<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>   
+	<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>
+    <link type="text/css" rel="stylesheet" href="${contextPath }/js/layer/mobile/need/layer.css"/>
+    <script type="text/javascript" src="${contextPath }/js/layer/layer.js" ></script>
 	<style type="text/css">
 		.subfile{
 			position: relative;
@@ -95,7 +97,7 @@
 									<th class="center">入住时间</th>
 									<th class="center">交租时间</th>
 									<th class="center">应缴费用</th>
-									<th class="center">操作</th>
+									<th class="center" >操作</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -117,8 +119,13 @@
 												<td class='center' style="width: 150px;">${var.enterTime}</td>
 												<td class='center' style="width: 150px;">${var.nextPayTime}</td>
 												<td class='center' style="width: 150px;">${var.price}</td>
-												<td style="width:200px;" class="center">
-													<a href="javascript:;" onclick="payRental(${var.empId});">缴费</a>
+												<td style="width:200px;" class="center" >
+                                                    <c:if test="${var.state==2}">
+                                                        <a>已缴费</a>
+                                                    </c:if>
+                                                    <c:if test="${var.state==1}">
+                                                        <a href="javascript:;" style="color: red;" onclick="payRental(${var.empId}); ">缴费</a>
+                                                    </c:if>
 												</td>
 											</tr>
 										</c:forEach>
