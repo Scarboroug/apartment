@@ -2,9 +2,13 @@ package com.hbxy.bean;
 
 public class LoginBean extends BaseBean {
 
+	//登录ID
 	private Integer loginId;
+	//登录名
 	private String loginName;
+	//密码
 	private String password;
+	//角色
 	private Integer role;
 
 	public LoginBean(){}

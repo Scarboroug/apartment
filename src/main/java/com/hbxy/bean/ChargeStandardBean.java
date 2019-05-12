@@ -2,9 +2,13 @@ package com.hbxy.bean;
 
 public class ChargeStandardBean extends BaseBean {
 
+	//收费标准ID
 	private Integer csId;
+	//收费标准名
 	private String csName;
+	//收费标准价格
 	private Double csPrice;
+	//收费标准单位
 	private String csUnit;
 	
 	public ChargeStandardBean(){}

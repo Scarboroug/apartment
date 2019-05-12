@@ -3,11 +3,16 @@ package com.hbxy.bean;
 
 public class RoomBean {
 
+	//房间表ID
 	private Integer roomId;
+	//房间类型ID
 	private Integer roomTypeId;
 	private RoomTypeBean roomType;
+	//房间号
 	private String roomNumber;
+	//房间性别属性
 	private Integer gender;
+	//入住人数
 	private Integer total;
 	
 	public RoomBean(){}

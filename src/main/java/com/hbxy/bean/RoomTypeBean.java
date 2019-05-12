@@ -2,8 +2,11 @@ package com.hbxy.bean;
 
 public class RoomTypeBean extends BaseBean {
 
+	//房间类型ID
 	private Integer roomTypeId;
+	//房间类型
 	private String roomType;
+	//租金
 	private Double rental;
 	
 	public RoomTypeBean(){}

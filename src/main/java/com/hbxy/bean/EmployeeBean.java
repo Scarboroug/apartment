@@ -2,19 +2,33 @@ package com.hbxy.bean;
 
 public class EmployeeBean extends BaseBean {
 
+	//人员ID
 	private Integer empId;
+	//姓名
 	private String name;
+	//身份证号码
 	private String idNumber;
+	//性别
 	private Integer gender;
+	//手机号
 	private String phone;
+	//房间ID
 	private Integer roomId;
+
 	private com.hbxy.bean.RoomBean room;
+	//省
 	private String province;
+	//城市
 	private String city;
+	//区域
 	private String area;
+
 	private String street;
+	//籍贯
 	private String detailed;
+	//入住时间
 	private String enterTime;
+	//支付时间
 	private String paymentTime;
 	private Integer mortgageStatus;
 	private Integer deleteFlag = 0;
