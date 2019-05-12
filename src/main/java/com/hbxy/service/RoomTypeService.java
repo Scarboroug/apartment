@@ -8,7 +8,7 @@ import java.util.List;
 public interface RoomTypeService {
 
 	/**
-	 *
+	 * 根据ID查询租金信息
 	 * @param pd
 	 * @return
 	 * @throws Exception
@@ -16,14 +16,14 @@ public interface RoomTypeService {
 	PageData findById(PageData pd) throws Exception;
 
 	/**
-	 *
+	 * 租金持久化
 	 * @param pd
 	 * @throws Exception
 	 */
 	void updateRoomType(PageData pd) throws Exception;
 
 	/**
-	 *
+	 * 查看所有租金标准列表
 	 * @param page
 	 * @return
 	 * @throws Exception

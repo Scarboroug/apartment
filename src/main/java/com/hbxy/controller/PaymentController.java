@@ -131,7 +131,7 @@ public class PaymentController extends BaseController {
 		long days = 0;
 		long day = 0;
 		try {
-			//通过id获取指定宿舍指定时间还，没有交水电费人员信息
+			//通过id获取指定房间指定时间还没有交水电费人员信息
 			List<PageData> list = paymentService.findEmpByRoomId(pd);
 			if(list != null) {
 				String time = pd.getString("time");

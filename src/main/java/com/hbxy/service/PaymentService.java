@@ -8,7 +8,7 @@ import java.util.List;
 public interface PaymentService {
 
 	/**
-	 *
+	 * 查询所有已缴水电费的用户
 	 * @param pd
 	 * @return
 	 * @throws Exception
@@ -16,7 +16,7 @@ public interface PaymentService {
 	List<PageData> listPage(PageData pd) throws Exception;
 
 	/**
-	 *
+	 * 查询所有已缴水电费的用户
 	 * @param page
 	 * @return
 	 * @throws Exception
@@ -24,7 +24,7 @@ public interface PaymentService {
 	List<PageData> listPage(Page page) throws Exception;
 
 	/**
-	 *
+	 * 通过id 获取指定房间指定时间还没有交水电费人员信息
 	 * @param pd
 	 * @return
 	 * @throws Exception
@@ -32,7 +32,7 @@ public interface PaymentService {
 	List<PageData> findEmpByRoomId(PageData pd) throws Exception;
 
 	/**
-	 *
+	 * 查询所有缴费房租信息
 	 * @param page
 	 * @return
 	 * @throws Exception
