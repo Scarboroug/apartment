@@ -13,7 +13,10 @@
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/common.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/address/style/cssreset-min.css">
 <link rel="stylesheet" type="text/css" href="${contextPath }/plugin/My97DatePicker/skin/WdatePicker.css">
-<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>  
+<script type="text/javascript" src="${contextPath }/plugin/My97DatePicker/WdatePicker.js"></script>
+    <!-- 导入layer插件样式 -->
+    <link type="text/css" rel="stylesheet" href="${contextPath }/js/layer/mobile/need/layer.css"/>
+    <script type="text/javascript" src="${contextPath }/js/layer/layer.js" ></script>
 <style type="text/css">
 	.citys{
 		margin-bottom: 10px;
@@ -69,22 +72,23 @@
                             <div class="kv-item clearfix">
                                 <label>手机号：</label>
                                 <div class="kv-item-content">
-                                    <input type="text" name="phone" value="${pd.phone }">
+                                    <input type="text" name="phone" value="${pd.phone }"  >
                                 </div>
+
                             </div>
                             <div class="kv-item address clearfix">
                                 <label>详细地址：</label>
                                 <div class="kv-item-content">
-                                    <input type="text" name="detailed" value="${pd.detailed }">
+                                    <input type="text" name="detailed" value="${pd.detailed }" >
                                 </div>
                             </div>
 
                             <div class="kv-item clearfix">
-                                <label>入住日期：</label>
-                                <div class="kv-item-content">
-                                    <input type="text" name="enterTime" value="${pd.enterTime }" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true})"  />
-                                </div>
+                            <label>入住日期：</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="enterTime" value="${pd.enterTime }" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true})"  />
                             </div>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -95,7 +99,6 @@
 </body>
 
 <script type="text/javascript">
-	
-	
+
 </script>
 </html>

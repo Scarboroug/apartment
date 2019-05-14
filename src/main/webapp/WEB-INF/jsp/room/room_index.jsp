@@ -185,9 +185,25 @@
                 btn:['保存','返回'],
                 yes:function (index,layero) {
                 	var body = layer.getChildFrame('body', index);
-                	body.find('#infoForm').submit();
-                	layer.close(index);
-                	window.location.href = "${contextPath }/room/list.do";
+					var roomId = body.find('#roomTypeId').val()
+					var roomNumber = body.find("input[name='roomNumber']").val();
+					console.log(roomId)
+					console.log(roomNumber)
+					if(!checkRoomId(roomId))
+					{
+						parent.layer.msg("请选择房间类型");
+					}
+					else if(!checkRoomNumber(roomNumber))
+					{
+						parent.layer.msg("请输入房间号");
+					}
+					else
+					{
+						body.find('#infoForm').submit();
+						parent.layer.alert("修改成功", {icon: 1});
+						layer.close(index);
+						window.location.href = "${contextPath }/room/list.do";
+					}
                 },
                 btn2:function () {
                 }
@@ -231,6 +247,23 @@
 					}, "text");
 				}
 			});
+		}
+		function checkRoomId(roomId)
+		{
+			if(roomId != '6')
+			{
+				return true;
+			}
+			return false;
+		}
+
+		function checkRoomNumber(checkroomNumber)
+		{
+			if(checkroomNumber != '')
+			{
+				return true;
+			}
+			return false;
 		}
 	</script>
 </body>

@@ -161,29 +161,49 @@
 			var time = $("#time").val();
 			var roomNumber = $("#roomNumber").val();
 			var reqData = 'roomId=' + roomId + '&water=' + water + "&electric=" + electric + "&time=" + time + "&roomNumber=" + roomNumber;
-			parent.layer.open({
-				content: '是否录入？'
-				,btn: ['确定', '返回']
-				,yes: function(index, layero){
-					$.post(url, reqData, function(data){
-						if(data = 'SUCCESS')
-						{
-							parent.layer.alert("录入成功", {icon: 1});
-							window.location.href = "${contextPath }/dataEntry/list.do?time=" + time;
-						}
-						else
-						{
-							parent.layer.alert("录入失败", {icon: 1});
-						}
-					}, "text");
-				}
-				,btn2: function(index, layero){
-					layer.close(index);
-				}
-				,cancel: function(){
+			console.log(water)
+			console.log(electric)
+			if(isEmpty(water))
+			{
+				parent.layer.msg("请输入用水量");
+			}else if(isEmpty(electric)){
+				parent.layer.msg("请输入用电量");
+			}else {
+				parent.layer.open({
+					content: '是否录入？'
+					,btn: ['确定', '返回']
+					,yes: function(index, layero){
 
-				}
-			});
+						$.post(url, reqData, function(data){
+							if(data = 'SUCCESS')
+							{
+								parent.layer.alert("录入成功", {icon: 1});
+								window.location.href = "${contextPath }/dataEntry/list.do?time=" + time;
+							}
+							else
+							{
+								parent.layer.alert("录入失败", {icon: 1});
+							}
+						}, "text");
+
+					}
+					,btn2: function(index, layero){
+						layer.close(index);
+					}
+					,cancel: function(){
+
+					}
+				});
+			}
+
+		}
+		function isEmpty(value)
+		{
+			if(value == null || value == '')
+			{
+				return true;
+			}
+			return false;
 		}
 	</script>
 </body>

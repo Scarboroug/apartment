@@ -175,22 +175,52 @@
 		{
 			layer.open({
                 type:2,
-                area: ['500px', '450px'],
+                area: ['600px', '450px'],
                 resize:false,
                 content:'${contextPath }/employee/goEmployeeEdit.do?empId=' + id,
                 btn:['保存','返回'],
                 yes:function (index,layero) {
-                	var body = layer.getChildFrame('body', index);
-                	body.find('#infoForm').submit();
-                	layer.close(index);
-                	window.location.href = "${contextPath }/employee/empList.do";
+                    var body = layer.getChildFrame('body', index);
+                    var phone = body.find("input[name='phone']").val();
+                    var detailed = body.find("input[name='detailed']").val();
+                    if(!checkPhone(phone))
+                    {
+                        parent.layer.msg("请输入正确的手机号");
+                    }
+                    else if(!checkDetails(detailed))
+                    {
+                        parent.layer.msg("请输入正确的地址");
+                    }
+                    else
+                    {
+                        body.find('#infoForm').submit();
+                        parent.layer.alert("修改成功", {icon: 1});
+                        window.location.href = "${contextPath }/employee/empList.do";
+                    }
                 },
                 btn2:function () {
                 }
             })
 		}
-		
-	</script>
+        function checkPhone(phone)
+        {
+            if(/^1(3|4|5|7|8)\d{9}$/.test(phone))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        function checkDetails(detailed)
+        {
+            if(detailed != '')
+            {
+                return true;
+            }
+            return false;
+        }
+
+    </script>
 </body>
 </html>
 

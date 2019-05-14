@@ -99,7 +99,7 @@
 														<a href="javascript:;" onclick="edits(${var.loginId })">重置密码</a>
 													</c:if>
 													<c:if test="${var.loginId == sessionScope.USER_ID}">
-														<a href="javascript:;" onclick="edit('${var.loginId }', '${var.password }')">重置密码</a>
+														<a href="javascript:;" onclick="edit('${var.loginId }', '${var.password }')">修改密码</a>
 													</c:if>
 												</td>
 											</tr>
