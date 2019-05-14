@@ -187,8 +187,8 @@
                 	var body = layer.getChildFrame('body', index);
 					var roomId = body.find('#roomTypeId').val()
 					var roomNumber = body.find("input[name='roomNumber']").val();
-					console.log(roomId)
-					console.log(roomNumber)
+					//console.log(roomId)
+					//console.log(roomNumber)
 					if(!checkRoomId(roomId))
 					{
 						parent.layer.msg("请选择房间类型");
