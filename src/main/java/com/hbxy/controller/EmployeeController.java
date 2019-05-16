@@ -58,7 +58,7 @@ public class EmployeeController extends BaseController {
 	}
 
 	/**
-	 * 查询入住人员信息
+	 * 查询人员信息
 	 * @param page
 	 * @return
 	 */
@@ -107,7 +107,9 @@ public class EmployeeController extends BaseController {
 
 				money = days * price;
 
-				money = (double) chargeStandardService.findById(pageData).get("csPrice") - money;
+                pageData.put("csId", "5");
+
+                money = (double) chargeStandardService.findById(pageData).get("csPrice") - money;
 				
 				list.get(i).put("price", money);
 				

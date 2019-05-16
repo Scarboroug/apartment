@@ -16,7 +16,7 @@ public interface PaymentService {
 	List<PageData> listPage(PageData pd) throws Exception;
 
 	/**
-	 * 查询所有已缴水电费的用户
+	 * 查询所有未缴水电费的用户
 	 * @param page
 	 * @return
 	 * @throws Exception
@@ -24,7 +24,7 @@ public interface PaymentService {
 	List<PageData> listPage(Page page) throws Exception;
 
 	/**
-	 * 通过id 获取指定房间指定时间还没有交水电费人员信息
+	 * 通过id 获取指定人员信息
 	 * @param pd
 	 * @return
 	 * @throws Exception

@@ -80,7 +80,7 @@ public class PaymentController extends BaseController {
 
 		ModelAndView mv = this.getModelAndView();
 		mv.addObject("varList", list);
-		mv.setViewName("payment/index");
+		//mv.setViewName("payment/menu_index");
 		mv.addObject("msg", "list");
 		mv.addObject("pd", pd);
 		mv.setViewName("payment/payment_rent");

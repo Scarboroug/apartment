@@ -175,7 +175,7 @@
 		{
 			layer.open({
                 type:2,
-                area: ['600px', '450px'],
+                area: ['500px', '360px'],
                 resize:false,
                 content:'${contextPath }/employee/goEmployeeEdit.do?empId=' + id,
                 btn:['保存','返回'],

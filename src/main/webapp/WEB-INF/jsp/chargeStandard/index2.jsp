@@ -128,7 +128,7 @@
 		function edit(id){
 			top.layer.open({
                 type:2,
-                area: ['500px', '300px'],
+                area: ['500px', '250px'],
                 resize:false,
                 content:'${contextPath }/chargeStandard/goEdit.do?csId=' + id,
                 btn:['保存','返回'],
