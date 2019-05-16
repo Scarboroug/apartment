@@ -113,7 +113,8 @@ public class CommonUtil {
 			e.printStackTrace();
 		}
 		md5.update(password.getBytes());
-		String md5String = new BigInteger(1, md5.digest()).toString(16);// 加密之后的字符串
+		// 加密之后的字符串
+		String md5String = new BigInteger(1, md5.digest()).toString(16);
 		
 		return md5String;
     }
@@ -126,7 +127,7 @@ public class CommonUtil {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 		String newFileName = df.format(new Date()) + "_" + new Random().nextInt(10000) + "." + fileExt;
 		
-		if(fileExt.equals("")){
+		if("".equals(fileExt)){
 			newFileName = df.format(new Date()) + "_" + new Random().nextInt(10000);
 		}
 		

@@ -33,7 +33,7 @@ public class SystemInterceptor extends HandlerInterceptorAdapter {
 			HttpSession session = request.getSession();
 			String userId = (String) session.getAttribute(Constant.SESSION_USER_NAME_STRING);
 
-			if (userId == null || userId.equals("")) {
+			if (userId == null || "".equals(userId)) {
 
 				// AJAX方法访问
 				if (handler instanceof HandlerMethod) {

@@ -146,7 +146,7 @@ public class AccountController extends BaseController {
 		try {
 			String id = pd.getString("ids");
 			if(null != id && !"".equals(id)){
-				String ids[] = id.split(",");
+				String[] ids = id.split(",");
 				int[] loginIds = new int[ids.length];
 				for(int i = 0; i < ids.length; i++) {
 					loginIds[i] = Integer.parseInt(ids[i]);

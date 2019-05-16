@@ -187,7 +187,7 @@ public class EmployeeController extends BaseController {
 	public Object findRoom() {
 		PageData pd = this.getPageData();
 		List<PageData> list;
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<>();
 		try {
 			PageData roomType = roomTypeService.findById(pd);
 			if(roomType != null) {

@@ -51,12 +51,7 @@ public class PaymentController extends BaseController {
 	@RequestMapping("list")
 	public ModelAndView list(Page page) {
 		PageData pd = this.getPageData();
-//		String time = pd.getString("time");
-//		if(StringUtils.isEmpty(time))
-//		{
-//			time = DateUtil.date2Str(new Date());
-//			pd.put("time", time);
-//		}
+
 		page.setPd(pd);
 		
 		List<PageData> list = new ArrayList<PageData>();
@@ -80,7 +75,6 @@ public class PaymentController extends BaseController {
 
 		ModelAndView mv = this.getModelAndView();
 		mv.addObject("varList", list);
-		//mv.setViewName("payment/menu_index");
 		mv.addObject("msg", "list");
 		mv.addObject("pd", pd);
 		mv.setViewName("payment/payment_rent");
@@ -205,22 +199,7 @@ public class PaymentController extends BaseController {
 			
 			pd.put("wePayTime", DateUtil.date2Str(weCalendar.getTime(), "yyyy-MM"));
 			employeeService.updateWEPayTimeById(pd);
-			
-			
-			/*String enterTime = pd.getString("enterTime");
-			String payTime = DateUtil.date2Str(new Date());
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(DateUtil.str2Date(payTime));
-			calendar.add(Calendar.MONTH, 1);
-			Calendar enterCalendar = Calendar.getInstance();
-			enterCalendar.setTime(DateUtil.str2Date(enterTime));
-			
-			calendar.add(Calendar.MONTH, 1);
-			//入住日期大于下月最后一天，交租日期为下月最后一天
-			if(enterCalendar.get(Calendar.DAY_OF_MONTH) <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
-			{
-				calendar.set(Calendar.DAY_OF_MONTH, enterCalendar.get(Calendar.DAY_OF_MONTH) - 1);
-			}*/
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Constant.AJAX_FAIL;

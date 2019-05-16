@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class RoomServiceImpl implements RoomService {
+
 	@Autowired
 	private DaoSupport dao;
 
@@ -31,8 +32,8 @@ public class RoomServiceImpl implements RoomService {
 	 * @param pd
 	 * @throws Exception  void<BR>
 	 */
+	@Override
 	public void deleteEmployeeById(PageData pd) throws Exception {
-//		dao.delete("EmployeeMapper.deleteById", pd);
 		dao.delete("EmployeeMapper.updateById", pd);
 		dao.update("RoomMapper.updateTotalById2", pd);
 		dao.update("RoomMapper.updateGenderById", pd);

@@ -28,7 +28,7 @@ public class DataEntryController extends BaseController {
 	private DataEntryService dataEntryService;
 
 	@Autowired
-	private RoomService RoomService;
+	private RoomService roomService;
 
 	@Autowired
 	private PaymentService paymentService;
@@ -62,7 +62,7 @@ public class DataEntryController extends BaseController {
 		List<PageData> list = new ArrayList<PageData>();
 		
 		try {
-			list = RoomService.findRoomByWE(page);
+			list = roomService.findRoomByWE(page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

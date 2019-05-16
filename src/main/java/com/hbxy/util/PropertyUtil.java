@@ -23,7 +23,7 @@ public class PropertyUtil {
 	/** 读取src下configure.properties配置文件内容 */
 	private final static String CONFIGURE_LOCATION = "configure.properties";
 	/** 接收Properties内容 */
-	private final static Properties property = new Properties();
+	private final static Properties PROPERYT = new Properties();
 	
 	/**
 	 * Method name: getConfigureProperties <BR>
@@ -34,8 +34,8 @@ public class PropertyUtil {
 	 */
 	public static String getConfigureProperties(String propertyName) {
 		try {
-			property.load(PropertyUtil.class.getClassLoader().getResourceAsStream(CONFIGURE_LOCATION));
-			String result = property.getProperty(propertyName);
+			PROPERYT.load(PropertyUtil.class.getClassLoader().getResourceAsStream(CONFIGURE_LOCATION));
+			String result = PROPERYT.getProperty(propertyName);
 			if (null != result && !"".equalsIgnoreCase(result)) {
 				return result.trim();
 			} else {				

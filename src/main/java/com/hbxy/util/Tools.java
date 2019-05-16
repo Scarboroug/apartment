@@ -11,17 +11,36 @@ import java.util.regex.Pattern;
 public class Tools
 {
 
-	static long normalLine = 0; //正常的行数
-	static long comentLine = 0; //注释行数
-	static long whiteLine = 0;  //空行数
-	static long countLine = 0;  //总行数
+	private static Pattern regex = Pattern.compile("^(((13[0-9])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8})|(0\\d{2}-\\d{8})|(0\\d{3}-\\d{7})$");
+
+	/**
+	 * 正常的行数
+	 */
+	static long normalLine = 0;
+
+	/**
+	 * 注释行数
+	 */
+	static long comentLine = 0;
+
+	/**
+	 * 空行数
+	 */
+	static long whiteLine = 0;
+
+	/**
+	 * 总行数
+	 */
+	static long countLine = 0;
+
 	/**
 	 * 随机生成六位数验证码
 	 * @return
 	 */
 	public static int getRandomNum() {
 		Random r = new Random();
-		return r.nextInt(900000) + 100000;// (Math.random()*(999999-100000)+100000)
+		// (Math.random()*(999999-100000)+100000)
+		return r.nextInt(900000) + 100000;
 	}
 
 	/**
@@ -109,9 +128,9 @@ public class Tools
 
 	/**
 	 * 把时间根据时、分、秒转换为时间段
-	 * @param StrDate
+	 * @param strDate
 	 */
-	public static String getTimes(String StrDate) {
+	public static String getTimes(String strDate) {
 		String resultTimes = "";
 
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -119,7 +138,7 @@ public class Tools
 
 		try {
 			now = new Date();
-			Date date = df.parse(StrDate);
+			Date date = df.parse(strDate);
 			long times = now.getTime() - date.getTime();
 			long day = times / (24 * 60 * 60 * 1000);
 			long hour = (times / (60 * 60 * 1000) - day * 24);
@@ -127,7 +146,6 @@ public class Tools
 			long sec = (times / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
 
 			StringBuffer sb = new StringBuffer();
-			// sb.append("发表于：");
 			if (hour > 0) {
 				sb.append(hour + "小时前");
 			} else if (min > 0) {
@@ -150,9 +168,11 @@ public class Tools
 	 * @param content 写入的内容
 	 */
 	public static void writeFile(String fileP, String content) {
-		String filePath = String.valueOf(Thread.currentThread().getContextClassLoader().getResource("")) + "../../"; // 项目路径
+		String keyPre = ":";
+		// 项目路径
+		String filePath = String.valueOf(Thread.currentThread().getContextClassLoader().getResource("")) + "../../";
 		filePath = (filePath.trim() + fileP.trim()).substring(6).trim();
-		if (filePath.indexOf(":") != 1) {
+		if (filePath.indexOf(keyPre) != 1) {
 			filePath = File.separator + filePath;
 		}
 		try {
@@ -186,13 +206,12 @@ public class Tools
 
 	/**
 	 * 验证手机号码
-	 * @param mobiles
+	 * @param mobileNumber
 	 * @return
 	 */
 	public static boolean checkMobileNumber(String mobileNumber) {
 		boolean flag = false;
 		try {
-			Pattern regex = Pattern.compile("^(((13[0-9])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8})|(0\\d{2}-\\d{8})|(0\\d{3}-\\d{7})$");
 			Matcher matcher = regex.matcher(mobileNumber);
 			flag = matcher.matches();
 		} catch (Exception e) {
@@ -200,17 +219,6 @@ public class Tools
 		}
 		return flag;
 	}
-/*
-	*//**
-	 * 检测KEY是否正确
-	 * @param paraname 传入参数
-	 * @param FKEY 接收的 KEY
-	 * @return 为空则返回true，不否则返回false
-	 *//*
-	public static boolean checkKey(String paraname, String FKEY) {
-		paraname = (null == paraname) ? "" : paraname;
-		return MD5.md5(paraname + DateUtil.getDays() + ",").equals(FKEY);
-	}*/
 
 	/**
 	 * 读取txt里的单行内容
@@ -218,18 +226,21 @@ public class Tools
 	 */
 	public static String readTxtFile(String fileP) {
 		try {
-
-			String filePath = String.valueOf(Thread.currentThread().getContextClassLoader().getResource("")); // 项目路径
+			String keyPre = ":";
+			// 项目路径
+			String filePath = String.valueOf(Thread.currentThread().getContextClassLoader().getResource(""));
 			filePath = filePath.replaceAll("file:/", "");
 			filePath = filePath.replaceAll("%20", " ");
 			filePath = filePath.trim() + fileP.trim();
-			if (filePath.indexOf(":") != 1) {
+			if (filePath.indexOf(keyPre) != 1) {
 				filePath = File.separator + filePath;
 			}
 			String encoding = "utf-8";
 			File file = new File(filePath);
-			if (file.isFile() && file.exists()) { // 判断文件是否存在
-				InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding); // 考虑到编码格式
+			// 判断文件是否存在
+			if (file.isFile() && file.exists()) {
+				// 考虑到编码格式
+				InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);
 				BufferedReader bufferedReader = new BufferedReader(read);
 				String lineTxt = null;
 				while ((lineTxt = bufferedReader.readLine()) != null) {
@@ -282,16 +293,19 @@ public class Tools
 					coments = true;
 				} else if(true == coments ) {
 					comentLine++;
-					if(line.endsWith("*/"))
+					if(line.endsWith("*/")){
 						coments = false;
-				}else if(line.startsWith("/*")&&line.endsWith("*/")) {   // 一行以/*开头。以*/结尾
+					}
+				}// 一行以/*开头。以*/结尾
+				else if(line.startsWith("/*")&&line.endsWith("*/")) {
 					comentLine++;
 				}
 				else if(line.startsWith("//")) {
 					comentLine++;
 				}
-				else
+				else{
 					normalLine++;
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -310,7 +324,7 @@ public class Tools
 		}
 	}
 
-	/*
+	/**
 	 * 递归遍历所有java文件
 	 */
 	public static void tree(File file) {

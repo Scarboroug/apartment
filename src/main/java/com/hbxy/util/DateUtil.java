@@ -375,19 +375,7 @@ public class DateUtil
 	}
 
 	public static void main(String[] args) throws Exception {
-        /*System.out.println(dateTimeToDate(new Date()));
-        System.out.println(dateParse("2018-02-04 14:58:20", null));
-        System.out.println(dateTimeToDateStringIfTimeEndZero(new Date()));
-        System.out.println(dateTimeToDateStringIfTimeEndZero(dateTimeToDate(new Date())));*/
-		//System.out.println(dateBetween(dateParse("2018-01-30", null), dateParse("2018-02-01", null)));
-		//System.out.println(dateBetweenIncludeToday(dateParse("2018-01-30", null), dateParse("2018-02-01", null)));
 		System.out.println(getDate(dateParse("2018-01-17", null)));
-        /*
-        System.out.println(getDaysOfMonth(dateParse("201802-01", null)));
-        System.out.println(getDaysOfYear(dateParse("2018-01-30", null)));*/
-		//System.out.println(dateFormat(dateAddMonths(dateParse("2018-02-07", StrUtils.MONTH_PATTERN), -12), StrUtils.MONTH_PATTERN));
-        /*System.out.println(dateFormat(maxDateOfMonth(dateParse("2018-02", "yyyy-MM")), null));
-        System.out.println(dateFormat(minDateOfMonth(dateParse("2018-03-31", null)), null));*/
 	}
 
 
@@ -432,10 +420,10 @@ public class DateUtil
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			return new Date().getTime();
 		} else {
 			return null;
 		}
+		return null;
 	}
 	
 	/**
