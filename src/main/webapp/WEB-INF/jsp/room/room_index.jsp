@@ -200,7 +200,7 @@
 					else
 					{
 						body.find('#infoForm').submit();
-						parent.layer.alert("修改成功", {icon: 1});
+						parent.layer.alert("新增成功", {icon: 1});
 						layer.close(index);
 						window.location.href = "${contextPath }/room/list.do";
 					}

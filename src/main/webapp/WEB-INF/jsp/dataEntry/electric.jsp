@@ -107,7 +107,10 @@
 												<td class='center' style="width: 150px;">${var.electric}</td>
 												<td class='center' style="width: 150px;">${var.time}</td>
 												<td class='center' style="width: 150px;">
-													<a href="javascript:;" onclick="edit(${var.weId })">修改</a>
+													<c:if test="${var.state==2}">
+														<a href="javascript:;" onclick="edit(${var.weId })">修改</a>
+													</c:if>
+
 												</td>
 											</tr>
 										</c:forEach>

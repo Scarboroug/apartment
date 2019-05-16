@@ -49,6 +49,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Integer findByIds(PageData pd) throws Exception {
+        return  (Integer) dao.findForObject("EmployeeMapper.findByIds", pd);
+    }
+
+    @Override
     public void deleteById(PageData pd) throws Exception {
         dao.delete("EmployeeMapper.deleteById", pd);
     }

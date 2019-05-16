@@ -21,18 +21,20 @@
 	</resultMap> -->
 	
 	<sql id="findParams">
-		r.room_id roomId, room_number roomNumber, gender, total, room_type roomType
+		r.room_id roomId, room_number roomNumber, r.gender, total, room_type roomType
 	</sql>
 	
 	<select id="datalistPage" parameterType="page" resultType="pd">
 		select <include refid="findParams"></include>
-		from room r, room_type
+		from room r, room_type,employee e
 		WHERE
 			r.room_id NOT IN (
 				SELECT e.room_id
 				FROM we e
 				WHERE time = #{pd.time}
 			)
+			and e.we_payTime = #{pd.time}
+			and e.room_id = r.room_id
 			and r.roomtype_id = room_type.roomtype_Id
 			and total != 0	
 			<if test="pd.roomNumber != null and pd.roomNumber != ''">
@@ -40,6 +42,7 @@
 						room_number like concat('%', #{pd.roomNumber}, '%')
 					) 
 			</if>
+			group by r.room_id
 	</select>
 	
 	<select id="findById" parameterType="pd" resultType="pd">
@@ -98,6 +101,7 @@
 			<if test="pd.roomTypeId != null and pd.roomTypeId != '' and pd.roomTypeId != 6">
 				and room_type.roomtype_Id = #{pd.roomTypeId, jdbcType = NUMERIC}
 			</if>
+			order by r.room_number
 		</where> 
 	</select>
 

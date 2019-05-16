@@ -190,6 +190,7 @@ public class PaymentController extends BaseController {
 	public String payWE() {
 		PageData pd = this.getPageData();
 		try {
+		    String price = pd.getString("price");
 			pd = employeeService.findById(pd);
 			
 			String wePayTime = pd.getString("wePayTime");
@@ -198,6 +199,7 @@ public class PaymentController extends BaseController {
 			weCalendar.add(Calendar.MONTH, 1);
 			
 			pd.put("wePayTime", DateUtil.date2Str(weCalendar.getTime(), "yyyy-MM"));
+			pd.put("price", price);
 			employeeService.updateWEPayTimeById(pd);
 
 		} catch (Exception e) {

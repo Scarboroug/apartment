@@ -10,7 +10,7 @@
 		<result property="detailed" column="detailed"/>
 		<result property="enterTime" column="enter_time"/>
 		<result property="payTime" column="payTime"/>
-		<result property="next_payTime" column="nextPayTime"/>
+		<result property="next_payTime" column="nextPay_Time"/>
 		<association property="room" column="room_id" 
 			javaType="com.hbxy.bean.RoomBean" select="com.hbxy.dao.RoomDao.findById">
 		</association>
@@ -96,6 +96,14 @@
 		select <include refid="selectParams"></include>
 		from employee e
 		where emp_id = #{empId}
+			and delete_flag = 0
+	</select>
+
+	<select id="findByIds" parameterType="pd" resultType="int">
+		select count(1)
+		from employee
+		where room_id = #{room_Id}
+			and we_payTime = #{time}
 			and delete_flag = 0
 	</select>
 	

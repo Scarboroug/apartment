@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping("dataEntry")
@@ -92,6 +90,27 @@ public class DataEntryController extends BaseController {
 		
 		try {
 			list = dataEntryService.listPage(page);
+			for (PageData result:list){
+				PageData data = new PageData();
+				data.put("room_Id",result.get("room_id"));
+				data.put("time",DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
+				int count = employeeService.findByIds(data);
+
+				Map map = new HashMap();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+
+				if(DateUtil.getMonth(sdf.parse(pd.getString("time")))-DateUtil.getMonth(sdf.parse(sdf.format(new Date()))) < -1){
+					//<=-2月份
+					map.put("state","1");
+				}else {
+					//>=-1月份
+					map.put("state","2");
+					if(count != 0){
+						map.put("state","3");
+					}
+				}
+				result.putAll(map);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,6 +139,27 @@ public class DataEntryController extends BaseController {
 		
 		try {
 			list = dataEntryService.listPage(page);
+			for (PageData result:list){
+				PageData data = new PageData();
+				data.put("room_Id",result.get("room_id"));
+				data.put("time",DateUtil.date2Str(DateUtil.dateAddMonths(new Date(),-1), "yyyy-MM"));
+				int count = employeeService.findByIds(data);
+
+				Map map = new HashMap();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+
+				if(DateUtil.getMonth(sdf.parse(pd.getString("time")))-DateUtil.getMonth(sdf.parse(sdf.format(new Date()))) < -1){
+					//<=-2月份
+					map.put("state","1");
+				}else {
+					//>=-1月份
+					map.put("state","2");
+					if(count != 0){
+						map.put("state","3");
+					}
+				}
+				result.putAll(map);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

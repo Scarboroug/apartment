@@ -12,7 +12,7 @@
 	</insert>
 	
 	<select id="listPage" parameterType="page" resultType="pd">
-		SELECT we_id weId, water, electric, time, room_number roomNumber, gender, total, room_type roomType
+		SELECT we_id weId, water, electric, time, room_number roomNumber, gender, total, room_type roomType ,r.room_id
 		FROM
 			room r,
 			room_type t,

@@ -161,7 +161,7 @@
 			//var reqData = ("#Form").serialize();
 			var time = $("#time").val();
 			var roomNumber = $("#roomNumber").val();
-			var reqData = 'empId=' + empId;
+			var reqData = 'empId=' + empId + '&price=' + price;
 			layer.open({
 			content: '是否缴费？'
 			,btn: ['确定', '返回']

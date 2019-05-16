@@ -45,6 +45,8 @@ public interface EmployeeService {
 	 */
 	PageData findById(PageData pd) throws Exception;
 
+	Integer findByIds(PageData pd) throws Exception;
+
 	/**
 	 * 根据ID 删除人员信息
 	 * @param pd
